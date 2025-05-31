@@ -1,0 +1,78 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.nav-section-one {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.logo {
+  width: clamp(90px, 15vw, 140px);
+  height: clamp(40px, 8vw, 50px);
+  border: 1px solid white;
+  border-radius: 10px;
+  img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.link-page-search {
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #828187;
+  .search-icon {
+    font-size: clamp(20px, 5vw, 30px);
+  }
+  p {
+    font-size: clamp(20px, 5vw, 30px);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  &:hover {
+    color: white;
+  }
+}
+.link-selected {
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .selected-icon {
+    color: #828187;
+    font-size: clamp(20px, 5vw, 30px);
+    &:hover {
+      color: white;
+    }
+  }
+}
+.memory-language {
+  width: clamp(50px, 5vw, 62px);
+  height: clamp(30px, 5vw, 35px);
+  overflow: hidden;
+  cursor: pointer;
+  .click-memory-language {
+    display: grid;
+    grid-template-columns: 80px;
+    grid-template-rows: repeat(2, 45px);
+
+  }
+  .RUS, .GBP {
+    border: 2px solid white;
+    width: clamp(50px, 5vw, 62px);
+    height: clamp(30px, 5vw, 35px);
+    border-radius: 5px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

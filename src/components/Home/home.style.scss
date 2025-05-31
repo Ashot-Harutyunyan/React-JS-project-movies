@@ -1,0 +1,28 @@
+.genre-container {
+  width: 90%;
+  margin: 0 auto;
+  div {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h2 {
+    width: max-content;
+  }
+  a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    display: flex;
+    align-items: start;
+    gap: 5px;
+  }
+  .home-icon-arrow-right {
+    font-size: 25px;
+  }
+}
+.genre-name {
+  width: 70px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: clamp(25px, 5vw, 50px);
+}
