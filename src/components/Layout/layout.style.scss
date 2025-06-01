@@ -1,8 +1,11 @@
 nav {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 15px 5%;
+  background: rgba(0, 0, 0, 0.72);
 }
 .nav-section-one {
   display: flex;
@@ -12,7 +15,7 @@ nav {
 .logo {
   width: clamp(90px, 15vw, 140px);
   height: clamp(40px, 8vw, 50px);
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 10px;
   img {
     border-radius: 10px;
