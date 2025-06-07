@@ -3,6 +3,7 @@
   width: 85%;
   margin: auto;
 }
+
 .movies-by-genre-swiper-slide {
   user-select: none;
   .SwiperSlide-container {
@@ -39,6 +40,7 @@
       }
     }
   }
+
   img {
     position: absolute;
     z-index: -1;
@@ -58,6 +60,7 @@
     }
   }
 }
+
 .movies-by-genre-title {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 100;
@@ -69,6 +72,7 @@
     margin: 0;
   }
 }
+
 .container-popularity-movie {
   position: relative;
   bottom: 30px;
@@ -100,14 +104,18 @@
   }
   span {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
   }
 }
+
 .swiper-grab {
   cursor: grab;
 }
+
 .swiper-grab:active {
   cursor: grabbing;
 }
+
 .swiper-but-prev {
   position: absolute;
   z-index: 999;
@@ -124,6 +132,7 @@
   padding: 0;
   cursor: pointer;
 }
+
 .swiper-but-next {
   position: absolute;
   z-index: 999;
@@ -140,11 +149,46 @@
   padding: 0;
   cursor: pointer;
 }
+
 .swiper-but-prev:disabled {
   opacity: 0;
   cursor: default;
 }
+
 .swiper-but-next:disabled {
   opacity: 0;
   cursor: default;
+}
+
+@media (max-width: 1023px) {
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .swiper-but-prev,
+  .swiper-but-next {
+    display: none;
+  }
+  .movies-by-genre {
+    width: 90%;
+  }
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+      height: 200px;
+  }
+  .container-popularity-movie {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+    height: 170px;
+  }
+  .container-popularity-movie {
+    width: 40px;
+    height: 40px;
+  }
 }

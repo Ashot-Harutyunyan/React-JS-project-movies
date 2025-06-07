@@ -7,8 +7,10 @@ import SearchMovies from './components/SearchMovies/SearchMovies.jsx'
 import SingleProduct from './components/SingleProduct/SingleProduct.jsx'
 import FeaturedMovies from './components/FeaturedMovies/FeaturedMovies.jsx'
 import SingleGenre from './components/SingleGenre/SingleGenre.jsx'
+import SignUp from "./components/SignUp/SignUp.jsx"
+import SignIn from "./components/SignIn/SignIn.jsx"
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 const queryClient = new QueryClient()
 
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home/>
+            },
+            {
+                path: 'SignIn',
+                element: <SignIn/>
+            },
+            {
+                path: 'SignUp',
+                element: <SignUp/>
             },
             {
                 path: 'SearchMovies',

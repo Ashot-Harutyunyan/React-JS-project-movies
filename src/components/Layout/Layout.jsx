@@ -1,6 +1,7 @@
 import './layout.style.scss'
 import { useState } from 'react'
 import { Link } from 'react-router'
+import { logout } from '../../firebase/firebase.js'
 
 import { IoIosSearch } from "react-icons/io"
 import { GoBell } from "react-icons/go"
@@ -8,6 +9,7 @@ import { GoBell } from "react-icons/go"
 function Layout() {
 
     const [memoryLanguage, setMemoryLanguage] = useState(true)
+    const [user, setUser] = useState(null)
 
     return (<nav>
                 <Link to='/' className='logo'>
@@ -15,12 +17,12 @@ function Layout() {
                 </Link>
 
                 <div className='nav-section-one'>
-                    <Link to='/SearchMovies' className='link-page-search'>
+                    <Link to='SearchMovies' className='link-page-search'>
                         <IoIosSearch className='search-icon'/>
                         <p>Search</p>
                     </Link>
 
-                    <Link to='/FeaturedMovies' className='link-selected'>
+                    <Link to='FeaturedMovies' className='link-selected'>
                         <GoBell className='selected-icon'/>
                     </Link>
 
@@ -39,6 +41,16 @@ function Layout() {
                             </div>
                         </div>
                     </div>
+
+                    {!user ? <div className='container-SignIn-SignUp-links'>
+                        <Link to='SignIn'>Sign In</Link>
+                        <Link to='SignUp'>Sign Up</Link>
+                    </div> : <button className='button-logout'
+                        onClick={async () => {
+                        await logout()
+                        setUser(null)
+                    }}>Logout</button>}
+
                 </div>
     </nav>)
 }

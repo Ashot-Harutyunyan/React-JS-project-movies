@@ -36,14 +36,29 @@ function HomeSlider() {
                 loop={true}
                 slidesPerView={1.2}
                 autoplay={{ delay: 10000, disableOnInteraction: false }}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                        coverflowEffect: { rotate: 20, stretch: 0, depth: 50, modifier: 1, slideShadows: false },
+                    },
+                    768: {
+                        slidesPerView: 1.2,
+                        coverflowEffect: { rotate: 40, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+                    },
+                    1024: {
+                        slidesPerView: 1.5,
+                        coverflowEffect: { rotate: 50, stretch: 0, depth: 100, modifier: 1, slideShadows: true },
+                    },
+                }}
             >
-                {data.results.map(({urls, alt_description, id}) => <SwiperSlide key={id}>
+            {data.results.map(({urls, alt_description, id}) =>{
+                if(alt_description === 'turned off black television') return
+                return <SwiperSlide key={id}>
                     <div className='home-swiper-container-img'>
-                        <img src={urls.regular} alt={alt_description}
-                             style={{width: '100%', height: '400px', objectFit: 'cover',}}
-                        />
+                        <img src={urls.regular} alt={alt_description}/>
                     </div>
-                </SwiperSlide> )}
+                </SwiperSlide>
+            })}
             </Swiper>}
     </>)
 }

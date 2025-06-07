@@ -1,0 +1,31 @@
+.form-sign-in {
+  width: 100%;
+  max-width: 500px;
+  margin: 100px auto 0 auto;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 5px;
+  input {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #434343;
+  }
+  input[type=submit] {
+    padding: 0.8rem 0;
+    background: green;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 700;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+}

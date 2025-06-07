@@ -1,8 +1,77 @@
 .home-swiper-container {
-  padding-top: 105px;
+  margin-top: 105px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 200px;
+  max-height: 400px;
 }
+
+.home-swiper-container-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.home-swiper-container-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .home-swiper-container .swiper-button-next,
 .home-swiper-container .swiper-button-prev {
   background-color: transparent;
   color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home-swiper-container .swiper-button-prev {
+  left: 10px;
+}
+
+.home-swiper-container .swiper-button-next {
+  right: 10px;
+}
+
+.home-swiper-container .swiper-button-next::after,
+.home-swiper-container .swiper-button-prev::after {
+  font-size: 40px;
+}
+
+@media (max-width: 1023px) {
+  .home-swiper-container {
+    height: 400px;
+  }
+  .home-swiper-container .swiper-button-next::after,
+  .home-swiper-container .swiper-button-prev::after {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-swiper-container {
+    margin-top: 90px;
+    height: 300px;
+  }
+  .home-swiper-container .swiper-button-next::after,
+  .home-swiper-container .swiper-button-prev::after {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-swiper-container {
+    margin-top: 75px;
+    height: 250px;
+  }
+  .home-swiper-container .swiper-button-next::after,
+  .home-swiper-container .swiper-button-prev::after {
+    font-size: 25px;
+  }
 }
