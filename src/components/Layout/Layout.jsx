@@ -2,6 +2,7 @@ import './layout.style.scss'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { logout } from '../../firebase/firebase.js'
+import { useAuth } from "../../ctx/AuthContext.jsx"
 
 import { IoIosSearch } from "react-icons/io"
 import { GoBell } from "react-icons/go"
@@ -9,7 +10,7 @@ import { GoBell } from "react-icons/go"
 function Layout() {
 
     const [memoryLanguage, setMemoryLanguage] = useState(true)
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useAuth()
 
     return (<nav>
                 <Link to='/' className='logo'>

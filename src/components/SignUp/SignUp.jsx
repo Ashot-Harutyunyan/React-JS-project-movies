@@ -1,15 +1,21 @@
 import './signUp.style.scss'
 import { popUp, emailCreate } from '../../firebase/firebase.js'
+import { useAuth } from "../../ctx/AuthContext.jsx"
 
 function SignUp() {
+
+    const [_, setUser] = useAuth()
 
     async function handleSignUp(e) {
         e.preventDefault()
         const { user} = await emailCreate(e.target.email.value, e.target.password.value)
+        setUser(user)
+        e.target.reset()
     }
 
     async function handleUserSignInGoogle() {
         const { user} = await popUp()
+        setUser(user)
     }
 
     return (<>
