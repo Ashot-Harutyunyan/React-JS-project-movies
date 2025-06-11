@@ -9,6 +9,22 @@ body {
   max-width: 1600px;
   margin: auto;
 }
+.modal-close-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  cursor: pointer;
+  &:hover {
+    background: crimson;
+  }
+}
+.modal-close-icon {
+  font-size: 2rem;
+}
 header {
   max-width: 1600px;
   width: 100%;

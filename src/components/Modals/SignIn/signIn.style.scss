@@ -1,7 +1,21 @@
+.modal-signIn {
+  width: 100%;
+  height: 100vh;
+  background: #242424;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+.modal-signIn-content {
+  width: 100%;
+  max-width: 500px;
+  height: max-content;
+}
 .form-sign-in {
   width: 100%;
   max-width: 500px;
-  margin: 100px auto 0 auto;
   border: 1px solid white;
   display: flex;
   flex-direction: column;

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { logout } from '../../firebase/firebase.js'
 import { useAuth } from "../../ctx/AuthContext.jsx"
+import { useModals } from "../../ctx/ModalsContext.jsx"
 
 import { IoIosSearch } from "react-icons/io"
 import { GoBell } from "react-icons/go"
@@ -11,6 +12,7 @@ function Layout() {
 
     const [memoryLanguage, setMemoryLanguage] = useState(true)
     const [user, setUser] = useAuth()
+    const [_, handleOpenModal] = useModals()
 
     return (<nav>
                 <Link to='/' className='logo'>
@@ -44,8 +46,8 @@ function Layout() {
                     </div>
 
                     {!user ? <div className='container-SignIn-SignUp-links'>
-                        <Link to='SignIn'>Sign In</Link>
-                        <Link to='SignUp'>Sign Up</Link>
+                        <button className='signIn-signUp-button' onClick={()=> handleOpenModal('signIn')}>Sign In</button>
+                        <button className='signIn-signUp-button' onClick={()=> handleOpenModal('signUp')}>Sign Up</button>
                     </div> : <button className='button-logout'
                         onClick={async () => {
                         await logout()

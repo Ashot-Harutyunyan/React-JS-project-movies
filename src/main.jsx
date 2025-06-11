@@ -7,9 +7,8 @@ import SearchMovies from './components/SearchMovies/SearchMovies.jsx'
 import SingleProduct from './components/SingleProduct/SingleProduct.jsx'
 import FeaturedMovies from './components/FeaturedMovies/FeaturedMovies.jsx'
 import SingleGenre from './components/SingleGenre/SingleGenre.jsx'
-import SignUp from "./components/SignUp/SignUp.jsx"
-import SignIn from "./components/SignIn/SignIn.jsx"
 import AuthContext from './ctx/AuthContext.jsx'
+import ModalsContext from './ctx/ModalsContext.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
@@ -23,14 +22,6 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home/>
-            },
-            {
-                path: 'SignIn',
-                element: <SignIn/>
-            },
-            {
-                path: 'SignUp',
-                element: <SignUp/>
             },
             {
                 path: 'SearchMovies',
@@ -64,7 +55,9 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <AuthContext>
-                <RouterProvider router={router}/>
+                <ModalsContext>
+                    <RouterProvider router={router}/>
+                </ModalsContext>
             </AuthContext>
             <ReactQueryDevtools/>
         </QueryClientProvider>

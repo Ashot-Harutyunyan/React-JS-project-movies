@@ -83,7 +83,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  a {
+  .signIn-signUp-button {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     border: 1px solid aliceblue;
     padding: 3px 10px 5px 10px;
@@ -91,6 +91,9 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    color: aliceblue;
   }
 }
 .button-logout {
