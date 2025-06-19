@@ -1,14 +1,27 @@
 nav {
   width: 100%;
+  max-height: 80px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 15px 5%;
+  padding: 15px 20px;
   background: rgba(0, 0, 0, 0.72);
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
 }
-.nav-section-one {
+nav.active {
+  max-height: 800px;
+}
+.nav-section {
   display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-section-language-and-icon {
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 20px;
 }
@@ -108,4 +121,76 @@ nav {
   letter-spacing: 1px;
   background: transparent;
   color: aliceblue;
+}
+
+.burger-menu {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 30px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.burger-menu span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background: aliceblue;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .35s ease-in-out;
+}
+
+.burger-menu span.top {
+  top: 0;
+  transform-origin: left center;
+}
+
+.burger-menu span.middle {
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.burger-menu span.bottom {
+  top: 100%;
+  transform-origin: left center;
+  transform: translateY(-100%);
+}
+
+.burger-menu.active span.top {
+  transform: rotate(45deg);
+  top: 0;
+  left: 5px;
+}
+
+.burger-menu.active span.middle {
+  width: 0%;
+  opacity: 0;
+}
+
+.burger-menu.active span.bottom {
+  transform: rotate(-45deg);
+  top: 28px;
+  left: 5px;
+}
+
+@media (max-width: 640px) {
+  nav {
+    gap: 20px;
+    max-height: 75px;
+  }
+  .burger-menu {
+    display: block;
+  }
+  .nav-section {
+    width: 100%;
+    flex-direction: column;
+    align-items: end;
+    padding: 20px;
+  }
 }

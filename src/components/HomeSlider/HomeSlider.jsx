@@ -51,8 +51,7 @@ function HomeSlider() {
                     },
                 }}
             >
-            {data.results.map(({urls, alt_description, id}) =>{
-                if(alt_description === 'turned off black television') return
+            {data.results.map(({urls, alt_description, id}) => {
                 return <SwiperSlide key={id}>
                     <div className='home-swiper-container-img'>
                         <img src={urls.regular} alt={alt_description}/>
