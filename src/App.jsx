@@ -1,13 +1,11 @@
 import './app.style.scss'
 import { Outlet } from 'react-router'
 import Layout from "./components/Layout/Layout.jsx"
-import SignIn from "./components/Modals/SignIn/SignIn.jsx";
-import SignUp from "./components/Modals/SignUp/SignUp.jsx";
+import Modals from "./components/Modals/Modals.jsx"
 
 function App() {
     return (<>
-        <SignIn/>
-        <SignUp/>
+        <Modals/>
         <header>
             <Layout/>
         </header>

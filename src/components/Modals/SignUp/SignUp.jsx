@@ -1,13 +1,11 @@
 import './signUp.style.scss'
 import { popUp, emailCreate } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
-import { useModals } from "../../../ctx/ModalsContext.jsx"
 import { IoCloseSharp } from "react-icons/io5"
 
-function SignUp() {
+function SignUp({modalsSignUp, handleCloseModal}) {
 
     const [_, setUser] = useAuth()
-    const [modals, handleOpenModal, handleCloseModal] = useModals()
 
     async function handleSignUp(e) {
         e.preventDefault()
@@ -21,7 +19,7 @@ function SignUp() {
         setUser(user)
     }
 
-    return (<div style={{display: modals.signUp ? 'flex' : 'none'}} className="modal-signUp">
+    return (<div style={{display: modalsSignUp ? 'flex' : 'none'}} className="modal-signUp">
         <div className='modal-close-container'>
             <IoCloseSharp onClick={handleCloseModal} className='modal-close-icon'/>
         </div>

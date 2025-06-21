@@ -1,13 +1,11 @@
 import './signIn.style.scss'
 import { emailLogin } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
-import { useModals } from "../../../ctx/ModalsContext.jsx"
 import {IoCloseSharp} from "react-icons/io5"
 
-function SignIn() {
+function SignIn({ modalsSignIn, handleCloseModal }) {
 
     const [_, setUser] = useAuth()
-    const [modals, handleOpenModal, handleCloseModal] = useModals()
 
     async function handleUserSignIn(e) {
         e.preventDefault()
@@ -16,7 +14,7 @@ function SignIn() {
         e.target.reset()
     }
 
-    return (<div style={{display: modals.signIn ? 'flex' : 'none'}}  className="modal-signIn">
+    return (<div style={{display: modalsSignIn ? 'flex' : 'none'}}  className="modal-signIn">
         <div className='modal-close-container'>
             <IoCloseSharp onClick={handleCloseModal} className='modal-close-icon'/>
         </div>

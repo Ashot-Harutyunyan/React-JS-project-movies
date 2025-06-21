@@ -16,14 +16,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3px;
   cursor: pointer;
   &:hover {
     background: crimson;
   }
 }
 .modal-close-icon {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 header {
   max-width: 1600px;
