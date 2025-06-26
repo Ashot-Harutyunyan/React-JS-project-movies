@@ -1,0 +1,17 @@
+.SingleProduct-container {
+  padding-top: 50px;
+  display: flex;
+  gap: 50px;
+}
+
+.SingleProduct-section-one {
+  width: 650px;
+  height: 350px;
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+//@media (max-width: 1160px) {
+//}
