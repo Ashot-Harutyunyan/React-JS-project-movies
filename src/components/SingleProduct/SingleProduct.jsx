@@ -1,8 +1,8 @@
 import './singleProduct.style.scss'
 import React from 'react'
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
-import modals from "../Modals/Modals.jsx";
+import { useQuery } from "@tanstack/react-query"
+import { useParams } from "react-router"
+import SingleProductIframe from "../SingleProductIframe/SingleProductIframe.jsx"
 
 function SingleProduct() {
 
@@ -29,7 +29,7 @@ function SingleProduct() {
                     videos: videos.results,
                     credits: credits.cast.filter(actor => actor.profile_path),
                     movie: movie
-                };
+                }
 
             }catch(err) {
                 console.log(err)
@@ -41,26 +41,13 @@ function SingleProduct() {
     if(isLoading) return <h2 className='Loading'>Loading...</h2>
     if(isError) return <p className='error'>Error {isError}</p>
 
-    return (<>
-        <section className='SingleProduct-container scrollUp'>
-            <div className="SingleProduct-section-one">
-                {data.videos[0].key ? <iframe
-                        src={`https://www.youtube.com/embed/${data.videos[0].key }`}
-                        frameBorder="0"
-                        allowFullScreen
-                        title="Movie trailer"
-                    ></iframe>
-                    : <div>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w500${trailerNotFound}`}
-                            alt="No Trailer Found"
-                            style={{ width: "650px", height: "350px" }}
-                        />
-                    </div>}
-            </div>
+    console.log(data.videos, data.credits, data.movie)
 
-        </section>
-    </>)
+    return <section className='SingleProduct-container scrollUp'>
+            <div className="SingleProduct-section-one">
+                <SingleProductIframe data={data.videos} dataImg={data.movie.backdrop_path}/>
+            </div>
+    </section>
 }
 
 export default SingleProduct
