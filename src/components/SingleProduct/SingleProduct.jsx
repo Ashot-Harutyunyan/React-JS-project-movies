@@ -3,6 +3,9 @@ import React from 'react'
 import { useQuery } from "@tanstack/react-query"
 import { useParams } from "react-router"
 import SingleProductIframe from "../SingleProductIframe/SingleProductIframe.jsx"
+import SingleProductMovieInfo from '../SingleProductMovieInfo/SingleProductMovieInfo.jsx'
+
+import { LiaLocationArrowSolid } from "react-icons/lia"
 
 function SingleProduct() {
 
@@ -46,7 +49,15 @@ function SingleProduct() {
     return <section className='SingleProduct-container scrollUp'>
             <div className="SingleProduct-section-one">
                 <SingleProductIframe data={data.videos} dataImg={data.movie.backdrop_path}/>
+                <p>{data.movie.release_date.split("-").join(" ")}</p>
+                <div className='SingleProduct-section-one-info'>
+                    <h3>Genre</h3><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
+                    {data.movie.genres.map(({ id, name }) => (
+                        <span key={id}> {name} </span>
+                    ))}
+                </div>
             </div>
+            <SingleProductMovieInfo info={data.movie}/>
     </section>
 }
 

@@ -1,0 +1,46 @@
+.SingleProduct-section-two {
+  width: calc(100% - 700px);
+  button {
+    margin: 25px auto 0px auto;
+    width: 200px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 100;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: #1f1e1f98;
+    color: white;
+    cursor: pointer;
+    svg path {
+      stroke: white;
+    }
+  }
+}
+.SingleProduct-section-two-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    margin-bottom: 10px;
+    font-size: clemp(20px, 2vw, 30px);
+    font-weight: 100;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+  }
+  p, span {
+    text-align: center;
+    font-size: clamp(12px, 2vw, 16px);
+    font-weight: 100;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  div {
+    text-align: center;
+  }
+}
