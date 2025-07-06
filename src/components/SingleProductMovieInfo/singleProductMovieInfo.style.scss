@@ -1,5 +1,11 @@
 .SingleProduct-section-two {
-  width: calc(100% - 700px);
+  width: 50%;
+  height: clamp(300px, 25vw, 400px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
   button {
     margin: 25px auto 0px auto;
     width: 200px;

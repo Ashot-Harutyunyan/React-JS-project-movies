@@ -19,6 +19,7 @@ function MoviesByGenre({genreName, genreId}) {
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
+
     const arrayConicGradient = [
         {colorOne: '#db2360', colorTwo: '#571435'},
         {colorOne: '#d2d531', colorTwo: '#423d0f'},
