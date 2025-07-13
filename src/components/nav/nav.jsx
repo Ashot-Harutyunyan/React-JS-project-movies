@@ -1,4 +1,4 @@
-import './layout.style.scss'
+import './nav.style.scss'
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { logout } from '../../firebase/firebase.js'
@@ -8,7 +8,7 @@ import { useModals } from "../../ctx/ModalsContext.jsx"
 import { IoIosSearch } from "react-icons/io"
 import { GoBell } from "react-icons/go"
 
-function Layout() {
+function Nav() {
 
     const [memoryLanguage, setMemoryLanguage] = useState(true)
     const [burgerMenu, setBurgerMenu] = useState(false)
@@ -68,4 +68,4 @@ function Layout() {
     </nav>)
 }
 
-export default Layout
+export default Nav

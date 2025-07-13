@@ -1,13 +1,13 @@
 import './app.style.scss'
 import { Outlet } from 'react-router'
-import Layout from "./components/Layout/Layout.jsx"
+import Nav from "./components/nav/nav.jsx"
 import Modals from "./components/Modals/Modals.jsx"
 
 function App() {
     return (<>
         <Modals/>
         <header>
-            <Layout/>
+            <Nav/>
         </header>
         <main>
             <Outlet />

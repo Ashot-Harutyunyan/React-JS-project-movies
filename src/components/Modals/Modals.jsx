@@ -9,7 +9,7 @@ function Modals() {
     return (<>
         <SignIn modalsSignIn={modals.signIn} handleCloseModal={handleCloseModal}/>
         <SignUp modalsSignUp={modals.signUp} handleCloseModal={handleCloseModal}/>
-    </>);
+    </>)
 }
 
 export default Modals;

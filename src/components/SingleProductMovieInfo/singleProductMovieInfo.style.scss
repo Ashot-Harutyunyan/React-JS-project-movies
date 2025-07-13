@@ -1,11 +1,13 @@
+.SingleProduct-iframe-info {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
 .SingleProduct-section-two {
-  width: 50%;
-  height: clamp(300px, 25vw, 400px);
+  height: clamp(255px, 25vw, 400px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 15px;
   button {
     margin: 25px auto 0px auto;
     width: 200px;
@@ -35,7 +37,7 @@
   align-items: center;
   h2 {
     margin-bottom: 10px;
-    font-size: clemp(20px, 2vw, 30px);
+    font-size: clamp(20px, 2vw, 30px);
     font-weight: 100;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;

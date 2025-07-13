@@ -1,5 +1,6 @@
-import './singleProductSwiper.style.scss'
+import './singleProductSlider.style.scss'
 import { useRef } from 'react'
+import { useSingleProductSliderQuery } from './useSingleProductSliderQuery.js'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -7,14 +8,33 @@ import 'swiper/css/navigation'
 
 import { RxChevronLeft } from "react-icons/rx"
 import { RxChevronRight } from "react-icons/rx"
+import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
-function SingleProductSwiper({actors}) {
+function SingleProductSlider({id}) {
+
+    const { data, isError, isLoading } = useSingleProductSliderQuery(id)
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
 
+    if(isLoading) return <>
+        <div className='SingleProduct-container-loading-title'>
+            <ComponentLoading width={'250px'} height={'25px'}/>
+        </div>
+        <div className="SingleProduct-container-loading-Swiper">
+            {new Array(14).fill(null).map((_, index) => (
+                <ComponentLoading key={index} width={'100px'} height={'150px'}/>
+            ))}
+        </div>
+    </>
+    if(isError) return <p className='error'>Error {isError}</p>
+
+    console.log(data)
+
     return (<>
-        <h2 className="SingleProduct-Actors-and-creators">Actors and creators</h2>
+        <h2 className="SingleProduct-Actors-and-creators">
+            {data.length ? 'Actors and creators' : 'No information about actors and creators'}
+        </h2>
         <div className="SingleProduct-container-Swiper">
             <button className="SingleProduct-Swiper-button-Left" ref={prevRef}><RxChevronLeft/></button>
             <button className="SingleProduct-Swiper-button-Right" ref={nextRef}><RxChevronRight/></button>
@@ -45,7 +65,7 @@ function SingleProductSwiper({actors}) {
                         swiper.navigation.update();
                     }}
             >
-                {actors.map((actor) => (
+                {data.map((actor) => (
                     <SwiperSlide key={actor.id}>
                         <div className="slider-item">
                             <div className="image-container">
@@ -57,9 +77,7 @@ function SingleProductSwiper({actors}) {
                 ))}
             </Swiper>
         </div>
-
-
     </>)
 }
 
-export default SingleProductSwiper
+export default SingleProductSlider

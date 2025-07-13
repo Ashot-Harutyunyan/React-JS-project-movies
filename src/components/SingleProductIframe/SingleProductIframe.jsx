@@ -1,6 +1,12 @@
-import React from 'react'
+import { useIframeQuery } from './useIframeQuery.js'
+import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx";
 
-function SingleProductIframe({data, dataImg}) {
+function SingleProductIframe({id}) {
+
+    const { data, isError, isLoading } = useIframeQuery(id)
+
+    if(isLoading) return <ComponentLoading width={'100%'} height={'100%'}/>
+    if(isError) return <p className='error'>Error {isError}</p>
 
     const videos = data.filter(
         video => video.name.includes('Trailer') && video.site === 'YouTube'
