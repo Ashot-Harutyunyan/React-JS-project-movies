@@ -13,7 +13,7 @@ function Nav() {
     const [memoryLanguage, setMemoryLanguage] = useState(true)
     const [burgerMenu, setBurgerMenu] = useState(false)
     const [user, setUser] = useAuth()
-    const [_, handleOpenModal] = useModals()
+    const { openModal } = useModals()
 
     return (<nav className={burgerMenu ? 'active' : ''}>
         <Link to='/' className='logo'>
@@ -57,8 +57,8 @@ function Nav() {
             </div>
 
             {!user ? <div className='container-SignIn-SignUp-links'>
-                    <button className='signIn-signUp-button' onClick={() => handleOpenModal('signIn')}>Sign In</button>
-                    <button className='signIn-signUp-button' onClick={() => handleOpenModal('signUp')}>Sign Up</button>
+                    <button className='signIn-signUp-button' onClick={() => openModal('signIn')}>Sign In</button>
+                    <button className='signIn-signUp-button' onClick={() => openModal('signUp')}>Sign Up</button>
                 </div>
                 : <button className='button-logout' onClick={async () => {
                     await logout()

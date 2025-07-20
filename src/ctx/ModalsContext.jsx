@@ -6,60 +6,35 @@ const initialState = {
 }
 
 const ModalCTX = createContext(initialState)
-let originalBodyPaddingRight = ''
 
 export default function ModalsContext({ children }) {
 
-    const [modals, setModals] = useState(initialState)
-    const bodyScrollbarWidth = useRef(0)
+    const [activeModal, setActiveModal] = useState(initialState)
+    const dialogRef = useRef(null)
+    const originalPaddingRef = useRef('')
 
-    function applyBodyStyles() {
-        const body = document.body
-        if (!originalBodyPaddingRight) {
-            originalBodyPaddingRight = body.style.paddingRight
-        }
-        body.style.overflow = 'hidden'
-        if (bodyScrollbarWidth.current === 0) {
-            bodyScrollbarWidth.current = window.innerWidth - document.documentElement.clientWidth
-        }
-        if (bodyScrollbarWidth.current > 0) {
-            body.style.paddingRight = `${bodyScrollbarWidth.current}px`
-            console.log('Applied padding-right:', body.style.paddingRight);
-        }
+    const openModal = (key) => {
+        setActiveModal((prev) => ({
+            ...Object.fromEntries(Object.keys(prev).map((k) => [k, false])),
+            [key]: true,
+        }))
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+        originalPaddingRef.current = getComputedStyle(document.body).paddingRight
+        document.body.classList.add('no-scroll')
+        document.body.style.paddingRight = `${scrollbarWidth}px`
+        dialogRef.current?.showModal()
     }
 
-    function resetBodyStyles() {
-        const body = document.body
-        body.style.overflow = ''
-        body.style.paddingRight = originalBodyPaddingRight
-        originalBodyPaddingRight = ''
-        bodyScrollbarWidth.current = 0
+    const closeModal = () => {
+        setActiveModal(initialState)
+        document.body.classList.remove('no-scroll')
+        document.body.style.paddingRight = originalPaddingRef.current || ''
+        dialogRef.current?.close()
     }
-
-    function handleOpenModal(modal) {
-        setModals(prevModals => {
-            const newModals = {}
-            const wasAnyModalOpen = Object.values(prevModals).some(isOpen => isOpen)
-
-            for (let key in prevModals) {
-                newModals[key] = (key === modal)
-            }
-            if (!wasAnyModalOpen) {
-                applyBodyStyles()
-            }
-            return newModals
-        })
-    }
-
-    function handleCloseModal() {
-        setModals(initialState)
-        resetBodyStyles()
-    }
-
 
     const contextValue = useMemo(() => {
-        return [modals, handleOpenModal, handleCloseModal]
-    }, [modals])
+        return {dialogRef, activeModal, openModal, closeModal}
+    }, [activeModal])
 
     return <ModalCTX value={contextValue}>{children}</ModalCTX>
 }

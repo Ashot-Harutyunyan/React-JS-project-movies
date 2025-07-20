@@ -3,7 +3,7 @@ import { emailLogin } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
 import {IoCloseSharp} from "react-icons/io5"
 
-function SignIn({ modalsSignIn, handleCloseModal }) {
+function SignIn({closeModal, activeModal}) {
 
     const [_, setUser] = useAuth()
 
@@ -14,9 +14,9 @@ function SignIn({ modalsSignIn, handleCloseModal }) {
         e.target.reset()
     }
 
-    return (<div style={{display: modalsSignIn ? 'flex' : 'none'}}  className="modal-signIn">
+    return (<div style={{display: activeModal ? 'flex' : 'none'}}  className="modal-signIn">
         <div className='modal-close-container'>
-            <IoCloseSharp onClick={handleCloseModal} className='modal-close-icon'/>
+            <IoCloseSharp onClick={closeModal} className='modal-close-icon'/>
         </div>
         <div className='modal-signIn-content'>
             <form onSubmit={handleUserSignIn} className="form-sign-in">
@@ -29,4 +29,4 @@ function SignIn({ modalsSignIn, handleCloseModal }) {
     </div>)
 }
 
-        export default SignIn
+export default SignIn

@@ -1,11 +1,11 @@
 .modal-signIn {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #242424;
-  position: fixed;
+  position: relative;
   top: 0;
   right: 0;
-  z-index: 9999;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -25,6 +25,9 @@
   gap: 1rem;
   padding: 1.5rem;
   border-radius: 5px;
+  h2 {
+    color: #FFFFFF;
+  }
   input {
     width: 100%;
     font-size: 1.2rem;

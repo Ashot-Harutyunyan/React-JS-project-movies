@@ -4,12 +4,12 @@ import {useModals} from "../../ctx/ModalsContext.jsx"
 
 function Modals() {
 
-    const [modals, _, handleCloseModal] = useModals()
+    const {dialogRef, activeModal, closeModal} = useModals()
 
-    return (<>
-        <SignIn modalsSignIn={modals.signIn} handleCloseModal={handleCloseModal}/>
-        <SignUp modalsSignUp={modals.signUp} handleCloseModal={handleCloseModal}/>
-    </>)
+    return (<dialog ref={dialogRef}>
+        <SignIn closeModal={closeModal} activeModal={activeModal.signIn}/>
+        <SignUp closeModal={closeModal} activeModal={activeModal.signUp}/>
+    </dialog>)
 }
 
-export default Modals;
+export default Modals

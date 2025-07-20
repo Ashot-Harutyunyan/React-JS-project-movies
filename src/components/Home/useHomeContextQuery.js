@@ -4,7 +4,6 @@ import { API_KEY, BASE_URL } from '../../apiConfig.js'
 export function useHomeContextQuery(){
     return useQuery({
         queryFn: async () => {
-            await new Promise(resolve => setTimeout(resolve, 5000))
             const response = await fetch(
                 `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en`
             )

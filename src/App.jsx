@@ -4,15 +4,15 @@ import Nav from "./components/nav/nav.jsx"
 import Modals from "./components/Modals/Modals.jsx"
 
 function App() {
-    return (<>
-        <Modals/>
+    return (<div className="app-container">
         <header>
             <Nav/>
         </header>
         <main>
             <Outlet />
+            <Modals/>
         </main>
-    </>)
+    </div>)
 }
 
 export default App
