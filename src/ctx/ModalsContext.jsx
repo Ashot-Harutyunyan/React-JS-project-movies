@@ -13,27 +13,35 @@ export default function ModalsContext({ children }) {
     const dialogRef = useRef(null)
     const originalPaddingRef = useRef('')
 
-    const openModal = (key) => {
-        setActiveModal((prev) => ({
-            ...Object.fromEntries(Object.keys(prev).map((k) => [k, false])),
-            [key]: true,
-        }))
+    function handleOpenModal() {
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
         originalPaddingRef.current = getComputedStyle(document.body).paddingRight
         document.body.classList.add('no-scroll')
         document.body.style.paddingRight = `${scrollbarWidth}px`
+    }
+
+    function handleCloseModal() {
+        document.body.classList.remove('no-scroll')
+        document.body.style.paddingRight = originalPaddingRef.current || ''
+    }
+
+    function openModal(key) {
+        setActiveModal((prev) => ({
+            ...Object.fromEntries(Object.keys(prev).map((k) => [k, false])),
+            [key]: true,
+        }))
+        handleOpenModal()
         dialogRef.current?.showModal()
     }
 
-    const closeModal = () => {
+    function closeModal() {
         setActiveModal(initialState)
-        document.body.classList.remove('no-scroll')
-        document.body.style.paddingRight = originalPaddingRef.current || ''
+        handleCloseModal()
         dialogRef.current?.close()
     }
 
     const contextValue = useMemo(() => {
-        return {dialogRef, activeModal, openModal, closeModal}
+        return {dialogRef, activeModal, openModal, closeModal, handleOpenModal, handleCloseModal}
     }, [activeModal])
 
     return <ModalCTX value={contextValue}>{children}</ModalCTX>

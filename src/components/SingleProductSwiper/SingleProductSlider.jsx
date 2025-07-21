@@ -1,6 +1,10 @@
 import './singleProductSlider.style.scss'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useSingleProductSliderQuery } from './useSingleProductSliderQuery.js'
+import SingleProductModal from "../Modals/SingleProductModal/SingleProductModal.jsx"
+import {useModals} from "../../ctx/ModalsContext.jsx"
+import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
@@ -8,7 +12,6 @@ import 'swiper/css/navigation'
 
 import { RxChevronLeft } from "react-icons/rx"
 import { RxChevronRight } from "react-icons/rx"
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
 function SingleProductSlider({id}) {
 
@@ -16,6 +19,15 @@ function SingleProductSlider({id}) {
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
+
+    const dialogRef = useRef(null)
+    const [actor, setActor] = useState(null)
+    const { handleOpenModal } = useModals()
+
+    function openModal() {
+        dialogRef.current?.showModal()
+        handleOpenModal()
+    }
 
     if(isLoading) return <>
         <div className='SingleProduct-container-loading-title'>
@@ -28,8 +40,6 @@ function SingleProductSlider({id}) {
         </div>
     </>
     if(isError) return <p className='error'>Error {isError}</p>
-
-    console.log(data)
 
     return (<>
         <h2 className="SingleProduct-Actors-and-creators">
@@ -66,7 +76,10 @@ function SingleProductSlider({id}) {
                     }}
             >
                 {data.map((actor) => (
-                    <SwiperSlide key={actor.id}>
+                    <SwiperSlide key={actor.id} onClick={()=> {
+                        setActor(actor)
+                        openModal()
+                    }}>
                         <div className="slider-item">
                             <div className="image-container">
                                 <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name}/>
@@ -77,6 +90,7 @@ function SingleProductSlider({id}) {
                 ))}
             </Swiper>
         </div>
+        <SingleProductModal actor={actor} dialogRef={dialogRef}/>
     </>)
 }
 

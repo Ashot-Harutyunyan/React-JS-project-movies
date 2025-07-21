@@ -2,7 +2,7 @@ import SignIn from "./SignIn/SignIn.jsx"
 import SignUp from "./SignUp/SignUp.jsx"
 import {useModals} from "../../ctx/ModalsContext.jsx"
 
-function Modals() {
+function GlobalModals() {
 
     const {dialogRef, activeModal, closeModal} = useModals()
 
@@ -12,4 +12,4 @@ function Modals() {
     </dialog>)
 }
 
-export default Modals
+export default GlobalModals

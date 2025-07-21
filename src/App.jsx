@@ -1,7 +1,7 @@
 import './app.style.scss'
 import { Outlet } from 'react-router'
 import Nav from "./components/nav/nav.jsx"
-import Modals from "./components/Modals/Modals.jsx"
+import GlobalModals from "./components/Modals/GlobalModals.jsx"
 
 function App() {
     return (<div className="app-container">
@@ -10,7 +10,7 @@ function App() {
         </header>
         <main>
             <Outlet />
-            <Modals/>
+            <GlobalModals/>
         </main>
     </div>)
 }
