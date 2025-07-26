@@ -1,8 +1,7 @@
 import {Link} from "react-router"
 import {TbArrowBigRightLines} from "react-icons/tb"
 import MoviesByGenre from "../MoviesByGenre/MoviesByGenre.jsx"
-import {SwiperSlide} from "swiper/react";
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx";
+import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
 function HomeContext({data}) {
     return (<>

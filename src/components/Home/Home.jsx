@@ -1,8 +1,4 @@
 import './home.style.scss'
-import { useQuery } from "@tanstack/react-query"
-import MoviesByGenre from "../MoviesByGenre/MoviesByGenre.jsx"
-import { Link } from 'react-router'
-import { TbArrowBigRightLines } from "react-icons/tb"
 import HomeSlider from "../HomeSlider/HomeSlider.jsx"
 import HomeContext from "../HomeContext/HomeContext.jsx"
 import { useHomeContextQuery } from "./useHomeContextQuery.js"

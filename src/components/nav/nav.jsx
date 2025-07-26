@@ -27,7 +27,6 @@ function Nav() {
             <span className="bottom"></span>
         </div>
 
-
         <section className='nav-section'>
             <Link to='SearchMovies' className='link-page-search'>
                 <IoIosSearch className='search-icon'/>

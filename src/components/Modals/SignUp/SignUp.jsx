@@ -9,9 +9,11 @@ function SignUp({closeModal, activeModal}) {
 
     async function handleSignUp(e) {
         e.preventDefault()
+        if(e.target.email.value === '' && e.target.password.value === '') return
         const { user} = await emailCreate(e.target.email.value, e.target.password.value)
         setUser(user)
         e.target.reset()
+        closeModal()
     }
 
     async function handleUserSignInGoogle() {

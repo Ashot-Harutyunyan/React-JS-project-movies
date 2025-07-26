@@ -2,7 +2,8 @@ import { createContext, use, useState, useRef, useMemo } from 'react'
 
 const initialState = {
     signIn: false,
-    signUp: false
+    signUp: false,
+    authRequiredModal: false,
 }
 
 const ModalCTX = createContext(initialState)

@@ -9,9 +9,11 @@ function SignIn({closeModal, activeModal}) {
 
     async function handleUserSignIn(e) {
         e.preventDefault()
+        if(e.target.email.value === '' && e.target.password.value === '') return
         const { user } = await emailLogin(e.target.email.value, e.target.password.value)
         setUser(user)
         e.target.reset()
+        closeModal()
     }
 
     return (<div style={{display: activeModal ? 'flex' : 'none'}}  className="modal-signIn">

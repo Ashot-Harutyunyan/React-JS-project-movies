@@ -2,6 +2,8 @@ import {useRef, useState} from 'react'
 import { Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Link } from "react-router"
+import {useAuth} from "../../ctx/AuthContext.jsx"
+import {useModals} from "../../ctx/ModalsContext.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
 import 'swiper/css'
@@ -13,6 +15,8 @@ function MoviesByGenreSlider({data}) {
     const prevRef = useRef(null)
     const nextRef = useRef(null)
 
+    const [ user ] = useAuth()
+    const { openModal } = useModals()
     const [featuredMovies, setFeaturedMovies] = useState(new Array(20).fill(false))
 
     const arrayConicGradient = [
@@ -75,6 +79,10 @@ function MoviesByGenreSlider({data}) {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill={featuredMovies[i] ? 'crimson' : 'transparent'} width="50px" height="50px" viewBox="-5.5 0 24 24"
                                      onClick={(e) => {
                                          e.preventDefault()
+                                         if(!user) {
+                                             openModal('authRequiredModal')
+                                             return
+                                         }
                                          setFeaturedMovies(featuredMovies.map((e, ind) => ind === i ? !e : e))
                                      }}>
                                     <path d="m0 2.089v21.911l6.545-6.26 6.544 6.26v-21.911c-.012-1.156-.951-2.089-2.109-2.089-.026 0-.051 0-.077.001h.004-8.724c-.022-.001-.047-.001-.073-.001-1.158 0-2.098.933-2.109 2.088v.001z"/>

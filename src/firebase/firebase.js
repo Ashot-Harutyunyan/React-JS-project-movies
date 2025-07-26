@@ -13,7 +13,7 @@ const config = {
 };
 
 const app = initializeApp(config)
-const auth = getAuth(app)
+export const auth = getAuth(app)
 const db = getFirestore(app)
 
 const googleAuth = new GoogleAuthProvider(auth)
