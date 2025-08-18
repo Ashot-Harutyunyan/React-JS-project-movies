@@ -1,7 +1,7 @@
 import { useIframeQuery } from './useIframeQuery.js'
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx";
+import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
-function SingleProductIframe({id}) {
+function SingleProductIframe({ id, dataImg }) {
 
     const { data, isError, isLoading } = useIframeQuery(id)
 
@@ -36,13 +36,10 @@ function SingleProductIframe({id}) {
              title="Movie trailer"
         ></iframe>
     }else {
-        return <div>
-            <img
+        return <img
                 src={`https://image.tmdb.org/t/p/w500${dataImg}`}
                 alt="No Trailer Found"
-                style={{ width: "650px", height: "350px" }}
             />
-        </div>
     }
 }
 

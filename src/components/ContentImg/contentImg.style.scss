@@ -1,0 +1,103 @@
+.SwiperSlide-container {
+  position: relative;
+  overflow: hidden;
+  .SwiperSlide-container-div-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #07060f92;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    padding: 15px 15px 50px 15px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+    svg path {
+      stroke: white;
+    }
+    p {
+      width: 100%;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 700;
+      font-size: clamp(13px, 2vw, 17px);
+    }
+  }
+  img {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease-in-out;
+  }
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+    .SwiperSlide-container-div-hover {
+      opacity: 1;
+    }
+  }
+}
+.container-popularity-movie {
+  position: relative;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #081c22;
+  .container-popularity-movie-percent-color {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+  }
+  .container-popularity-movie-percent-text {
+    position: absolute;
+    z-index: 2;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #081c22;
+    color: white;
+  }
+  span {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(12px, 2vw, 16px);
+  }
+}
+.movies-by-genre-title {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  font-size: clamp(13px, 2vw, 17px);
+  position: relative;
+  bottom: 25px;
+  margin: 0;
+  p {
+    margin: 0;
+  }
+}
+@media (max-width: 767px) {
+  .container-popularity-movie {
+    width: 50px;
+    height: 50px;
+  }
+}
+

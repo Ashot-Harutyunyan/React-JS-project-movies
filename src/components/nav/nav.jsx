@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { logout } from '../../firebase/firebase.js'
 import { useAuth } from "../../ctx/AuthContext.jsx"
 import { useModals } from "../../ctx/ModalsContext.jsx"
+import { useLanguage } from "../../ctx/LanguageContext.jsx"
 
 import { IoIosSearch } from "react-icons/io"
 import { GoBell } from "react-icons/go"
@@ -14,6 +15,7 @@ function Nav() {
     const [burgerMenu, setBurgerMenu] = useState(false)
     const [user, setUser] = useAuth()
     const { openModal } = useModals()
+    const [_, handleLanguage] = useLanguage()
 
     return (<nav className={burgerMenu ? 'active' : ''}>
         <Link to='/' className='logo'>
@@ -39,7 +41,10 @@ function Nav() {
                 </Link>
 
                 <div className='memory-language'
-                     onClick={() => setMemoryLanguage(!memoryLanguage)}
+                     onClick={() => {
+                         setMemoryLanguage(!memoryLanguage)
+                         handleLanguage()
+                     }}
                 >
                     <div className='click-memory-language'>
                         <div className='GBP'

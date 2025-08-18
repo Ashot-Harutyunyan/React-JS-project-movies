@@ -1,0 +1,99 @@
+.SearchMovies-title {
+  padding-top: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.form-search-movies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 25px 0 50px 0;
+  div {
+    min-width: 300px;
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #FFFFFF;
+    border-radius: 5px;
+    overflow: hidden;
+    height: clamp(35px, 4vw, 45px);
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: clamp(16px, 2vw, 18px);
+    }
+    .SearchMovies-search-icon {
+      color: #828187;
+      font-size: 25px;
+    }
+    .SearchMovies-Cross-icon {
+      font-size: 25px;
+      color: #828187;
+      cursor: pointer;
+      &:hover {
+        color: crimson;
+      }
+    }
+  }
+  input[type="submit"] {
+    max-width: 170px;
+    width: 100%;
+    padding: 0 15px;
+    height: clamp(35px, 4vw, 45px);
+    font-size: clamp(16px, 2vw, 18px);
+    border: 1px solid #FFFFFF;
+    letter-spacing: 1px;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #FFFFFF;
+    background: #046804;
+  }
+}
+.container-search-movies {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  .container-search-movies-div {
+    max-width: 200px;
+    width: 100%;
+  }
+  .SwiperSlide-container {
+    height: 300px;
+  }
+}
+@media (max-width: 655px) {
+  .container-search-movies .container-search-movies-div {
+    max-width: 180px;
+  }
+}
+@media (max-width: 595px) {
+  .container-search-movies .container-search-movies-div {
+    max-width: 150px;
+    .SwiperSlide-container {
+      height: 250px;
+    }
+  }
+}
+@media (max-width: 505px) {
+  .container-search-movies .container-search-movies-div {
+    max-width: 120px;
+    .SwiperSlide-container {
+      height: 220px;
+    }
+  }
+  .form-search-movies {
+    div {
+      min-width: 200px;
+    }
+    input[type="submit"] {
+      max-width: 100px;
+      padding: 0 5px;
+    }
+  }
+}

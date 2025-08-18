@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 import { RxChevronLeft } from "react-icons/rx"
 import { RxChevronRight } from "react-icons/rx"
 
-function SingleProductSlider({id}) {
+function SingleProductSlider({ id }) {
 
     const { data, isError, isLoading } = useSingleProductSliderQuery(id)
 
@@ -51,22 +51,21 @@ function SingleProductSlider({id}) {
             <Swiper modules={[Navigation]}
                     spaceBetween={20}
                     breakpoints={{
-                        150: { slidesPerView: 1.5 },
-                        200: { slidesPerView: 2 },
-                        265: { slidesPerView: 2.5 },
-                        330: { slidesPerView: 3 },
-                        380: { slidesPerView: 3.5 },
-                        440: { slidesPerView: 4 },
-                        490: { slidesPerView: 4.5 },
-                        615: { slidesPerView: 5.5 },
-                        730: { slidesPerView: 6.5 },
-                        840: { slidesPerView: 7.5 },
-                        940: { slidesPerView: 8.5 },
-                        1070: { slidesPerView: 9.5 },
-                        1190: { slidesPerView: 10.5 },
-                        1300: { slidesPerView: 11.5 },
-                        1400: { slidesPerView: 12.5 },
-                        1500: { slidesPerView: 13.5 },
+                        265: { slidesPerView: 2 },
+                        310: { slidesPerView: 2.5 },
+                        345: { slidesPerView: 3 },
+                        425: { slidesPerView: 3.5 },
+                        480: { slidesPerView: 4 },
+                        550: { slidesPerView: 4.5 },
+                        615: { slidesPerView: 5 },
+                        730: { slidesPerView: 5.5 },
+                        840: { slidesPerView: 6.5 },
+                        940: { slidesPerView: 7.5 },
+                        1070: { slidesPerView: 8.5 },
+                        1190: { slidesPerView: 9.5 },
+                        1300: { slidesPerView: 10.5 },
+                        1400: { slidesPerView: 11.5 },
+                        1500: { slidesPerView: 12.5 },
                     }}
                     onInit={(swiper) => {
                         swiper.params.navigation.prevEl = prevRef.current;

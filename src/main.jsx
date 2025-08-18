@@ -9,6 +9,7 @@ import FeaturedMovies from './components/FeaturedMovies/FeaturedMovies.jsx'
 import SingleGenre from './components/SingleGenre/SingleGenre.jsx'
 import AuthContext from './ctx/AuthContext.jsx'
 import ModalsContext from './ctx/ModalsContext.jsx'
+import LanguageContext from './ctx/LanguageContext.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
@@ -56,7 +57,9 @@ createRoot(document.getElementById('root')).render(
         <QueryClientProvider client={queryClient}>
             <AuthContext>
                 <ModalsContext>
-                    <RouterProvider router={router}/>
+                    <LanguageContext>
+                        <RouterProvider router={router}/>
+                    </LanguageContext>
                 </ModalsContext>
             </AuthContext>
             <ReactQueryDevtools/>
