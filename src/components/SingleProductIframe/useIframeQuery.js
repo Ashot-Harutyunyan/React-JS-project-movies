@@ -10,6 +10,6 @@ export function useIframeQuery(id) {
             const data = await response.json()
             return data.results
         },
-        queryKey: [`Single Product Iframe ${id}`]
+        queryKey: ['Single Product Iframe', id]
     })
 }

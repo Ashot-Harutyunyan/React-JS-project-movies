@@ -15,7 +15,7 @@ function Nav() {
     const [burgerMenu, setBurgerMenu] = useState(false)
     const [user, setUser] = useAuth()
     const { openModal } = useModals()
-    const [_, handleLanguage] = useLanguage()
+    const [language, handleLanguage] = useLanguage()
 
     return (<nav className={burgerMenu ? 'active' : ''}>
         <Link to='/' className='logo'>
@@ -32,42 +32,42 @@ function Nav() {
         <section className='nav-section'>
             <Link to='SearchMovies' className='link-page-search'>
                 <IoIosSearch className='search-icon'/>
-                <p>Search</p>
+                <p>{language.Search}</p>
             </Link>
 
             <div className='nav-section-language-and-icon'>
                 <Link to='FeaturedMovies' className='link-selected'>
                     <GoBell className='selected-icon'/>
                 </Link>
-
-                <div className='memory-language'
-                     onClick={() => {
-                         setMemoryLanguage(!memoryLanguage)
-                         handleLanguage()
-                     }}
-                >
-                    <div className='click-memory-language'>
-                        <div className='GBP'
-                             style={{gridRow: memoryLanguage ? '1/2' : '2/3'}}
-                        >
-                            <img src="/United-Kingdom.png" alt="GBP"/>
-                        </div>
-
-                        <div className='RUS'>
-                            <img src="/Russia.png" alt="RUS"/>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {!user ? <div className='container-SignIn-SignUp-links'>
-                    <button className='signIn-signUp-button' onClick={() => openModal('signIn')}>Sign In</button>
-                    <button className='signIn-signUp-button' onClick={() => openModal('signUp')}>Sign Up</button>
+                    <button className='signIn-signUp-button' onClick={() => openModal('signIn')}>{language.SignIn}</button>
+                    <button className='signIn-signUp-button' onClick={() => openModal('signUp')}>{language.SignUp}</button>
                 </div>
                 : <button className='button-logout' onClick={async () => {
                     await logout()
                     setUser(null)
                 }}>Logout</button>}
+
+            <div className='memory-language'
+                 onClick={() => {
+                     setMemoryLanguage(!memoryLanguage)
+                     handleLanguage()
+                 }}
+            >
+                <div className='click-memory-language'>
+                    <div className='GBP'
+                         style={{gridRow: memoryLanguage ? '1/2' : '2/3'}}
+                    >
+                        <img src="/United-Kingdom.png" alt="GBP"/>
+                    </div>
+
+                    <div className='RUS'>
+                        <img src="/Russia.png" alt="RUS"/>
+                    </div>
+                </div>
+            </div>
         </section>
     </nav>)
 }

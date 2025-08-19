@@ -6,6 +6,6 @@ export function useSearchQuery(url){
             const response = await fetch(url)
             return await response.json()
         },
-        queryKey: [`Search Movies ${url}`]
+        queryKey: ["Search Movies", url]
     })
 }

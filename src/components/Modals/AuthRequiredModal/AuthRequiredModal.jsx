@@ -1,9 +1,11 @@
 import './authRequiredModal.style.scss'
 import {IoCloseSharp} from "react-icons/io5"
 import {useModals} from "../../../ctx/ModalsContext.jsx"
+import { useLanguage } from "../../../ctx/LanguageContext.jsx"
 
 function AuthRequiredModal({closeModal, activeModal}) {
 
+    const [language] = useLanguage()
     const { openModal } = useModals()
 
     function handleOpenSignInOrSignUpModal(arg) {
@@ -17,16 +19,16 @@ function AuthRequiredModal({closeModal, activeModal}) {
             <div className='auth-required-modal-content-container-close'>
                 <IoCloseSharp onClick={closeModal} className='auth-required-modal-content-icon-close'/>
             </div>
-            <p>Please log in to your account to continue <br/>
-              <span>This action is only available to authorized users</span>
+            <p>{language.AuthRequiredModalText1} <br/>
+              <span>{language.AuthRequiredModalText2}</span>
             </p>
             <div className='container-SignIn-SignUp-buttons'>
                 <button className='signIn-button'
                         onClick={() => handleOpenSignInOrSignUpModal('signIn')}
-                >Sign In</button>
+                >{language.SignIn}</button>
                 <button className='signUp-button'
                         onClick={() => handleOpenSignInOrSignUpModal('signUp')}
-                >Sign Up</button>
+                >{language.SignUp}</button>
             </div>
         </div>
     </div>

@@ -3,11 +3,11 @@
   grid-row: 2/3;
 }
 .SingleProduct-section-two {
-  height: clamp(255px, 25vw, 400px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 15px;
   button {
     margin: 25px auto 0px auto;
     width: 200px;

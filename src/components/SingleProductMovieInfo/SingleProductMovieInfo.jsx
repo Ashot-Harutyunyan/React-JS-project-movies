@@ -5,13 +5,15 @@ import { LiaLocationArrowSolid } from "react-icons/lia"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import {useAuth} from "../../ctx/AuthContext.jsx"
 import {useModals} from "../../ctx/ModalsContext.jsx"
+import { useLanguage } from "../../ctx/LanguageContext.jsx"
 
 function SingleProductMovieInfo({ id, handleChildData }) {
 
+    const [language] = useLanguage()
     const [ user ] = useAuth()
     const { openModal } = useModals()
 
-    const { data, isError, isLoading } = useMovieInfoQuery(id)
+    const { data, isError, isLoading, error } = useMovieInfoQuery(id, language.url)
     const [selected, setSelected] = useState(false)
 
     useEffect(() => {
@@ -32,20 +34,16 @@ function SingleProductMovieInfo({ id, handleChildData }) {
             <ComponentLoading width={'200px'} height={'40px'}/>
         </div>
     </>
-    if(isError) return <p className='error'>Error {isError}</p>
-
-    // if (data?.backdrop_path && typeof data.backdrop_path === 'string') {
-    //     handleChildData(data.backdrop_path);
-    // }
+    if(isError) return <p className='error'>{error.message}</p>
 
     return (<>
         <div className='SingleProduct-iframe-info'>
             <div className='SingleProduct-section-one-data'>
-                <span>Release date</span><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
+                <span>{language.ReleaseDate}</span><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
                 <span>{data.release_date.split("-").join(" ")}</span>
             </div>
             {data.genres.length && <div className='SingleProduct-section-one-info'>
-                <h3>Genre</h3><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
+                <h3>{language.Genre}</h3><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
                 {data.genres.map(({ id, name }) => (
                     <span key={id}>{name}</span>
                 ))}
@@ -53,7 +51,7 @@ function SingleProductMovieInfo({ id, handleChildData }) {
         </div>
         <div className="SingleProduct-section-two">
             <div className="SingleProduct-section-two-info">
-                <h2>{data.original_title}</h2>
+                <h2>{data.title}</h2>
                 <p>{data.tagline}</p>
                 <p>{data.overview}</p>
             </div>
@@ -61,7 +59,7 @@ function SingleProductMovieInfo({ id, handleChildData }) {
                 if(!user) openModal('authRequiredModal')
                 else setSelected(!selected)
             }}>
-                {selected ? "selected" : "choose"}
+                {selected ? language.selected : language.choose}
                 <svg xmlns="http://www.w3.org/2000/svg" fill={selected ? 'crimson' : 'transparent'} width="20px" height="20px" viewBox="-5.5 0 24 24">
                     <path d="m0 2.089v21.911l6.545-6.26 6.544 6.26v-21.911c-.012-1.156-.951-2.089-2.109-2.089-.026 0-.051 0-.077.001h.004-8.724c-.022-.001-.047-.001-.073-.001-1.158 0-2.098.933-2.109 2.088v.001z"/>
                 </svg>

@@ -1,44 +1,54 @@
 import './searchMovies.style.scss'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSearchQuery } from "./useSearchQuery.js"
 import ContentImg from "../ContentImg/ContentImg.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { API_KEY, BASE_URL } from "../../apiConfig.js"
+import { useLanguage } from "../../ctx/LanguageContext.jsx"
 
 import { IoIosSearch } from "react-icons/io"
 import { RxCrossCircled } from "react-icons/rx"
 
-const initialUrl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-
 function SearchMovies() {
 
+    const [language] = useLanguage()
+    const initialUrl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=${language.url}&page=1`
     const [url, setUrl] = useState(initialUrl)
     const [inputSearch, setInputSearch] = useState('')
     const [searchOrNot, setSearchOrNot] = useState(true)
-    const { data, isError, isLoading } = useSearchQuery(url)
+    const { data, isError, isLoading, error } = useSearchQuery(url)
     const arrayLoading = new Array(20).fill(null)
+
+    useEffect(() => {
+        if(inputSearch === '') {
+            setUrl(initialUrl)
+        }else {
+            const newUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputSearch}&language=${language.url}`
+            setUrl(newUrl)
+        }
+    },[language.url, inputSearch, initialUrl])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         if(inputSearch === '') {
             setUrl(initialUrl)
         }else {
-            const newUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputSearch}&language=en-US`
+            const newUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputSearch}&${language.url}`
             setUrl(newUrl)
         }
     }
 
-    if(isError) return <p className='error'>Error {isError}</p>
+    if(isError) return <p className='error'>{error.message}</p>
 
     return (<section className='scrollUp'>
-        <h2 className='SearchMovies-title'>Search</h2>
+        <h2 className='SearchMovies-title'>{language.Search}</h2>
         <form className='form-search-movies' onSubmit={handleSubmit}>
             <div>
                 <input
                     type="text"
                     value={inputSearch}
                     name="SearchMovies"
-                    placeholder="Search Movies"
+                    placeholder={language.SearchMovies}
                     onChange={(e) => {
                         setInputSearch(e.target.value)
                         if(e.target.value === '') {
@@ -58,7 +68,7 @@ function SearchMovies() {
                       />
                 }
             </div>
-            <input type="submit" value="Search"/>
+            <input type="submit" value={language.Search}/>
         </form>
         <div className="container-search-movies">
             {isLoading

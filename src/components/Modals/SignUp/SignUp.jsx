@@ -2,10 +2,12 @@ import './signUp.style.scss'
 import { popUp, emailCreate } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
 import { IoCloseSharp } from "react-icons/io5"
+import { useLanguage } from "../../../ctx/LanguageContext.jsx"
 
 function SignUp({closeModal, activeModal}) {
 
     const [_, setUser] = useAuth()
+    const [language] = useLanguage()
 
     async function handleSignUp(e) {
         e.preventDefault()
@@ -27,15 +29,15 @@ function SignUp({closeModal, activeModal}) {
         </div>
         <div className='modal-signUp-content'>
             <form onSubmit={handleSignUp} className='form-sign-up'>
-                <h2>Sign Up</h2>
-                <input type="email" name="email" placeholder="Email"/>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="submit" value="Sign Up"/>
+                <h2>{language.SignUp}</h2>
+                <input type="email" name="email" placeholder={language.Email}/>
+                <input type="password" name="password" placeholder={language.Password}/>
+                <input type="submit" value={language.SignUp}/>
             </form>
             <div className='container-facebook-google-auth'>
                 <div onClick={handleUserSignInGoogle}>
                     <img src="/google-icon.svg" alt="Google icon"/>
-                    Sign in from Google account
+                    {language.GoogleAccount}
                 </div>
             </div>
         </div>

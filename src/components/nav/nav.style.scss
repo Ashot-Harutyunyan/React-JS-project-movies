@@ -180,6 +180,10 @@ nav.active {
 }
 
 @media (max-width: 640px) {
+  .logo {
+    width: 136px;
+    height: 46px;
+  }
   nav {
     gap: 20px;
     max-height: 75px;

@@ -3,10 +3,10 @@ import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 
 function SingleProductIframe({ id, dataImg }) {
 
-    const { data, isError, isLoading } = useIframeQuery(id)
+    const { data, isError, isLoading, error } = useIframeQuery(id)
 
     if(isLoading) return <ComponentLoading width={'100%'} height={'100%'}/>
-    if(isError) return <p className='error'>Error {isError}</p>
+    if(isError) return <p className='error'>{error.message}</p>
 
     const videos = data.filter(
         video => video.name.includes('Trailer') && video.site === 'YouTube'

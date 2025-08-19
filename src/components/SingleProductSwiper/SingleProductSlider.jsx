@@ -4,6 +4,7 @@ import { useSingleProductSliderQuery } from './useSingleProductSliderQuery.js'
 import SingleProductModal from "../Modals/SingleProductModal/SingleProductModal.jsx"
 import {useModals} from "../../ctx/ModalsContext.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
+import { useLanguage } from "../../ctx/LanguageContext.jsx"
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
@@ -15,7 +16,8 @@ import { RxChevronRight } from "react-icons/rx"
 
 function SingleProductSlider({ id }) {
 
-    const { data, isError, isLoading } = useSingleProductSliderQuery(id)
+    const [language] = useLanguage()
+    const { data, isError, isLoading, error } = useSingleProductSliderQuery(id, language.url)
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -39,11 +41,11 @@ function SingleProductSlider({ id }) {
             ))}
         </div>
     </>
-    if(isError) return <p className='error'>Error {isError}</p>
+    if(isError) return <p className='error'>{error.message}</p>
 
     return (<>
         <h2 className="SingleProduct-Actors-and-creators">
-            {data.length ? 'Actors and creators' : 'No information about actors and creators'}
+            {data.length ? language.ActorsAndCreators : language.NoActorsAndCreators}
         </h2>
         <div className="SingleProduct-container-Swiper">
             <button className="SingleProduct-Swiper-button-Left" ref={prevRef}><RxChevronLeft/></button>

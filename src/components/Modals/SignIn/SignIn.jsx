@@ -1,10 +1,12 @@
 import './signIn.style.scss'
 import { emailLogin } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
+import { useLanguage } from "../../../ctx/LanguageContext.jsx"
 import {IoCloseSharp} from "react-icons/io5"
 
 function SignIn({closeModal, activeModal}) {
 
+    const [language] = useLanguage()
     const [_, setUser] = useAuth()
 
     async function handleUserSignIn(e) {
@@ -22,10 +24,10 @@ function SignIn({closeModal, activeModal}) {
         </div>
         <div className='modal-signIn-content'>
             <form onSubmit={handleUserSignIn} className="form-sign-in">
-                <h2>Sign In</h2>
-                <input type="email" name="email" placeholder="Email"/>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="submit" value="Sign In"/>
+                <h2>{language.SignIn}</h2>
+                <input type="email" name="email" placeholder={language.Email}/>
+                <input type="password" name="password" placeholder={language.Password}/>
+                <input type="submit" value={language.SignIn}/>
             </form>
         </div>
     </div>)
