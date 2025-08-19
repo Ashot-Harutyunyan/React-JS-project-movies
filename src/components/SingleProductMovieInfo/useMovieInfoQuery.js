@@ -5,13 +5,11 @@ export function useMovieInfoQuery(id, url) {
     return useQuery({
         queryFn: async () => {
             const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=${url}`)
-            let data = await res.json()
+            const data = await res.json()
 
             if (!data.overview) {
                 const fallbackRes = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`)
-                const fallbackData = await fallbackRes.json()
-
-                data = { ...fallbackData }
+                return await fallbackRes.json()
             }
 
             return data

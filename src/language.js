@@ -15,7 +15,8 @@ export const english = {
     selected: 'selected',
     choose: 'choose',
     ActorsAndCreators: 'Actors and creators',
-    NoActorsAndCreators: 'No information about actors and creators'
+    NoActorsAndCreators: 'No information about actors and creators',
+    Nothingfound: 'Nothing found for your request'
 }
 
 export const russia = {
@@ -35,5 +36,6 @@ export const russia = {
     selected: 'выбрано',
     choose: 'выбирать',
     ActorsAndCreators: 'Актеры и создатели',
-    NoActorsAndCreators: 'Нет информации об актерах и создателях'
+    NoActorsAndCreators: 'Нет информации об актерах и создателях',
+    Nothingfound: 'Ничего не найдено по вашему запросу'
 }

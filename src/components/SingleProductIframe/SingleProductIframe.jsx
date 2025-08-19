@@ -1,9 +1,11 @@
 import { useIframeQuery } from './useIframeQuery.js'
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
+import { useLanguage } from "../../ctx/LanguageContext.jsx"
 
 function SingleProductIframe({ id, dataImg }) {
 
-    const { data, isError, isLoading, error } = useIframeQuery(id)
+    const [language] = useLanguage()
+    const { data, isError, isLoading, error } = useIframeQuery(id, language.url)
 
     if(isLoading) return <ComponentLoading width={'100%'} height={'100%'}/>
     if(isError) return <p className='error'>{error.message}</p>

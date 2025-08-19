@@ -67,6 +67,18 @@
     height: 300px;
   }
 }
+.search-nothing-found-message {
+  margin: 50px 0;
+  font-size: clamp(16px, 2.5vw, 36px);
+  text-align: center;
+  font-weight: 600;
+  span {
+    font-size: clamp(18px, 3vw, 38px);
+    font-weight: 900;
+    border-bottom: 1px solid crimson;
+    padding-bottom: 3px;
+  }
+}
 @media (max-width: 655px) {
   .container-search-movies .container-search-movies-div {
     max-width: 180px;

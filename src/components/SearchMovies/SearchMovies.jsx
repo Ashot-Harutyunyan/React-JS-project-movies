@@ -26,7 +26,7 @@ function SearchMovies() {
             const newUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${inputSearch}&language=${language.url}`
             setUrl(newUrl)
         }
-    },[language.url, inputSearch, initialUrl])
+    },[language.url])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -79,12 +79,13 @@ function SearchMovies() {
                     </div>
                 </div>
             })
-            : data.results.map((elem) => {
+            : data.results.length ? data.results.map((elem) => {
                 if(elem.backdrop_path){
                     return <div className='container-search-movies-div' key={elem.id}>
                         <ContentImg {...elem}/>
                     </div>
                 }})
+            : <h2 className='search-nothing-found-message'>{language.Nothingfound} <span>{inputSearch}</span></h2>
             }
         </div>
     </section>)
