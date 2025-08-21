@@ -2,7 +2,10 @@ import './signIn.style.scss'
 import { emailLogin } from '../../../firebase/firebase.js'
 import { useAuth } from "../../../ctx/AuthContext.jsx"
 import { useLanguage } from "../../../ctx/LanguageContext.jsx"
-import {IoCloseSharp} from "react-icons/io5"
+
+import {IoCloseSharp } from "react-icons/io5"
+import { HiMiniLockClosed } from "react-icons/hi2"
+import { MdEmail } from "react-icons/md"
 
 function SignIn({closeModal, activeModal}) {
 
@@ -25,8 +28,18 @@ function SignIn({closeModal, activeModal}) {
         <div className='modal-signIn-content'>
             <form onSubmit={handleUserSignIn} className="form-sign-in">
                 <h2>{language.SignIn}</h2>
-                <input type="email" name="email" placeholder={language.Email}/>
-                <input type="password" name="password" placeholder={language.Password}/>
+                <div className='form-sign-in-container-email'>
+                    <div className='form-sign-in-container-icon'>
+                        <MdEmail className='form-sign-in-icon'/>
+                    </div>
+                    <input type="email" name="email" placeholder={language.Email}/>
+                </div>
+                <div className='form-sign-in-container-password'>
+                    <div className='form-sign-in-container-icon'>
+                        <HiMiniLockClosed className='form-sign-in-icon'/>
+                    </div>
+                    <input type="password" name="password" placeholder={language.Password}/>
+                </div>
                 <input type="submit" value={language.SignIn}/>
             </form>
         </div>

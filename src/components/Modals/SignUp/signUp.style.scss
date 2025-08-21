@@ -16,7 +16,6 @@
 }
 .form-sign-up {
   width: 100%;
-  max-width: 500px;
   border: 1px solid white;
   display: flex;
   flex-direction: column;
@@ -36,7 +35,8 @@
     padding: 0.8rem;
     border: none;
     outline: none;
-    border-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
     color: #434343;
   }
   input[type=submit] {
@@ -51,7 +51,6 @@
 }
 .container-facebook-google-auth {
   width: 100%;
-  max-width: 500px;
   border: 1px solid white;
   display: flex;
   flex-direction: column;
@@ -77,5 +76,54 @@
       width: 25px;
       height: 25px;
     }
+  }
+}
+.form-sign-up-container-email,
+.form-sign-up-container-password {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.form-sign-up-container-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  background-color: #02025c;
+  padding: 0.9rem;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.form-sign-up-icon {
+  font-size: 1.2rem;
+}
+@media (max-width: 600px) {
+  .modal-signUp-content {
+    max-width: 400px;
+  }
+  .form-sign-up {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  .container-facebook-google-auth div {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .form-sign-up-container-icon {
+    padding: 0.6rem;
+  }
+  .form-sign-up input {
+    padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+    font-size: 1rem;
+  }
+  .form-sign-up-icon {
+    font-size: 1rem;
+  }
+  .form-sign-up input[type=submit] {
+    padding: 0.5rem 0;
+  }
+}
+@media (max-width: 450px) {
+  .modal-signUp-content {
+    max-width: 300px;
   }
 }
