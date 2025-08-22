@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useParams } from "react-router"
 import SingleProductIframe from "../SingleProductIframe/SingleProductIframe.jsx"
 import SingleProductMovieInfo from '../SingleProductMovieInfo/SingleProductMovieInfo.jsx'
-import SingleProductSlider from "../SingleProductSwiper/SingleProductSlider.jsx"
+import SingleProductSlider from "../SingleProductSlider/SingleProductSlider.jsx"
 
 function SingleProduct() {
 

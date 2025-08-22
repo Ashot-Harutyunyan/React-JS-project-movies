@@ -16,7 +16,9 @@ export const english = {
     choose: 'choose',
     ActorsAndCreators: 'Actors and creators',
     NoActorsAndCreators: 'No information about actors and creators',
-    Nothingfound: 'Nothing found for your request'
+    nothingFound: 'Nothing found for your request',
+    allMovies: 'All movies by genre',
+    watchTrailer: 'Watch trailer'
 }
 
 export const russia = {
@@ -37,5 +39,7 @@ export const russia = {
     choose: 'выбирать',
     ActorsAndCreators: 'Актеры и создатели',
     NoActorsAndCreators: 'Нет информации об актерах и создателях',
-    Nothingfound: 'Ничего не найдено по вашему запросу'
+    nothingFound: 'Ничего не найдено по вашему запросу',
+    allMovies: 'Все фильмы по жанрам',
+    watchTrailer: 'Смотреть трейлер'
 }

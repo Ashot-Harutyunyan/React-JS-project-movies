@@ -1,0 +1,49 @@
+.single-genre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.single-genre-container-movie {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 25px;
+  background: #0c0c0c;
+  padding: 10px;
+  border-radius: 12px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.single-genre-container-movie img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.single-genre-container-movie h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #fff;
+}
+
+.single-genre-container-movie p {
+  margin: 10px 0;
+  color: #aaa;
+}
+
+.single-genre-container-movie button {
+    padding: 7.5px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: #1f1e1f98;
+    color: white;
+    cursor: pointer;
+    svg path {
+      stroke: white;
+    }
+}
