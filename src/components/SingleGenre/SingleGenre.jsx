@@ -50,9 +50,9 @@ function SingleGenre() {
 
     }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
-    if (isLoading) return <div className='scrollUp'>
+    if (isLoading) return <div className='scrollUp loading'>
         <ComponentLoading width={'300px'} height={'35px'} />
-        <div className="single-genre">
+        <div className="single-genre loading">
             {loadingArray.map((_, index) => (
                 <div className="single-genre-container-movie" key={index}>
                     <ComponentLoading width={'clamp(160px, 20vw, 260px)'} height={'clamp(80px, 10vw, 160px)'} />
@@ -64,7 +64,7 @@ function SingleGenre() {
     if (isError) return <p className="error scrollUp">{error.message}</p>
 
     return (<>
-        <h2 className='scrollUp'>{language.allMovies} {genre.toLowerCase()}</h2>
+        <h2 className='scrollUp single-genre-title'>{language.allMovies} {genre.toLowerCase()}</h2>
         <section className="single-genre">
             {data.pages.map(page =>
                 page.results.map((elem) => (
@@ -84,7 +84,7 @@ function SingleGenre() {
                                     else setSelected(!selected)
                                 }}>
                                     {selected ? language.selected : language.choose}
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill={selected ? 'crimson' : 'transparent'} width="13px" height="13px" viewBox="-5.5 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill={selected ? 'crimson' : 'transparent'} viewBox="-5.5 0 24 24">
                                         <path d="m0 2.089v21.911l6.545-6.26 6.544 6.26v-21.911c-.012-1.156-.951-2.089-2.109-2.089-.026 0-.051 0-.077.001h.004-8.724c-.022-.001-.047-.001-.073-.001-1.158 0-2.098.933-2.109 2.088v.001z"/>
                                     </svg>
                                 </button>

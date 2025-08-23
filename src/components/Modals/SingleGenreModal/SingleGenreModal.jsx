@@ -2,6 +2,7 @@ import './singleGenreModal.style.scss'
 import { useModals } from '../../../ctx/ModalsContext.jsx'
 import { Link, useParams } from 'react-router'
 import {IoCloseSharp} from "react-icons/io5"
+import { LiaLocationArrowSolid } from "react-icons/lia"
 
 function SingleGenreModal({movie, dialogRef, linkText}) {
 
@@ -20,19 +21,22 @@ function SingleGenreModal({movie, dialogRef, linkText}) {
              >
             <div className="modal-single-genre-content">
                 <div className='modal-single-genre-content-background'>
-                    <div className='modal-close-container'>
-                        <IoCloseSharp onClick={closeModal} className='modal-close-icon'/>
+                    <div className='modal-single-genre-modal-close-container' onClick={closeModal}>
+                        <IoCloseSharp className='modal-single-genre-modal-close-icon'/>
                     </div>
                     <div className="modal-single-genre-content-container-img">
                         <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path})`} alt={movie?.title}/>
                     </div>
                     <div className='modal-single-genre-content-info'>
                         <h3>{movie?.title}</h3>
-                        <p>{movie?.release_date.split('-').reverse().join(' ')}</p>
-                        <p>{movie?.overview}</p>
-                        <Link to={`/genre/${id}/${movie?.id}`} onClick={closeModal}>
-                            {linkText}
-                        </Link>
+                        <div>
+                            <p>{movie?.release_date.split('-').reverse().join(' ')}</p>
+                            <p>{movie?.overview}</p>
+                            <Link to={`/${genre}/${id}/${movie?.id}`} onClick={closeModal}>
+                                {linkText}
+                                <LiaLocationArrowSolid className='modal-single-genre-content-info-icon'/>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
