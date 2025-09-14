@@ -58,7 +58,11 @@
 @media (max-width: 767px) {
   .home-swiper-container {
     margin-top: 90px;
-    height: 300px;
+    height: 250px;
+  }
+  .home-swiper-container .swiper-button-next,
+  .home-swiper-container .swiper-button-prev {
+    top: 58%;
   }
   .home-swiper-container .swiper-button-next::after,
   .home-swiper-container .swiper-button-prev::after {
@@ -69,7 +73,7 @@
 @media (max-width: 480px) {
   .home-swiper-container {
     margin-top: 75px;
-    height: 250px;
+    height: 200px;
   }
   .home-swiper-container .swiper-button-next::after,
   .home-swiper-container .swiper-button-prev::after {

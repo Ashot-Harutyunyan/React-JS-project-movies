@@ -1,3 +1,4 @@
+import './moviesByGenreSlider.style.scss'
 import { useRef } from 'react'
 import { Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"

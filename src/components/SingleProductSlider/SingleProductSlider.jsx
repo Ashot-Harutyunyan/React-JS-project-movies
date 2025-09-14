@@ -5,6 +5,8 @@ import SingleProductModal from "../Modals/SingleProductModal/SingleProductModal.
 import {useModals} from "../../ctx/ModalsContext.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
@@ -83,7 +85,11 @@ function SingleProductSlider({ id }) {
                     }}>
                         <div className="slider-item">
                             <div className="image-container">
-                                <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name}/>
+                                <LazyLoadImage
+                                    src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                                    alt={actor.name}
+                                    effect="blur"
+                                />
                             </div>
                             <p>{actor.name}</p>
                         </div>

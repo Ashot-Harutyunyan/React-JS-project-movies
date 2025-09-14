@@ -1,0 +1,94 @@
+.movies-by-genre {
+  position: relative;
+  width: 95%;
+  margin: auto;
+}
+
+.movies-by-genre-swiper-slide {
+  user-select: none;
+}
+
+.swiper-grab {
+  cursor: grab;
+}
+
+.swiper-grab:active {
+  cursor: grabbing;
+}
+
+.swiper-but-prev {
+  position: absolute;
+  z-index: 999;
+  left: -35px;
+  top: 150px;
+  transform: translateY(-22.5px);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 45px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.swiper-but-next {
+  position: absolute;
+  z-index: 999;
+  right: -35px;
+  top: 150px;
+  transform: translateY(-22.5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 45px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.swiper-but-prev:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+.swiper-but-next:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+@media (max-width: 1023px) {
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+    height: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .swiper-but-prev,
+  .swiper-but-next {
+    display: none;
+  }
+  .movies-by-genre {
+    width: 90%;
+  }
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+    height: 200px;
+  }
+  .container-popularity-movie {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies-by-genre-swiper-slide .SwiperSlide-container {
+    height: 170px;
+  }
+  .container-popularity-movie {
+    width: 40px;
+    height: 40px;
+  }
+}

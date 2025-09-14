@@ -1,6 +1,8 @@
 import './singleProductModal.style.scss'
 import {useModals} from "../../../ctx/ModalsContext.jsx"
 import {IoCloseSharp} from "react-icons/io5"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 function SingleProductModal({actor, dialogRef}) {
 
@@ -20,9 +22,11 @@ function SingleProductModal({actor, dialogRef}) {
             </div>
             <div className="modal-singleProduct-content">
                 <div className="modal-singleProduct-content-container-img">
-                    <img
+                    <LazyLoadImage
                         src={`https://image.tmdb.org/t/p/w500${actor?.profile_path}`}
-                        alt={actor?.name}/>
+                        alt={actor?.name}
+                        effect="blur"
+                    />
                 </div>
                 <p>{actor?.name}</p>
             </div>

@@ -1,11 +1,13 @@
 .SwiperSlide-container {
+  width: 100%;
+  height: 300px;
   position: relative;
   overflow: hidden;
   .SwiperSlide-container-div-hover {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     height: 100%;
     background: #07060f92;
@@ -30,14 +32,24 @@
       font-size: clamp(13px, 2vw, 17px);
     }
   }
+  .lazy-load-image-background {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
   img {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1);
+    transition: transform .5s ease-in-out;
+  }
+  .lazy-load-image-background.blur.lazy-load-image-loaded img {
     transition: transform .5s ease-in-out;
   }
   &:hover {
@@ -51,6 +63,7 @@
 }
 .container-popularity-movie {
   position: relative;
+  z-index: 3;
   bottom: 30px;
   width: 60px;
   height: 60px;

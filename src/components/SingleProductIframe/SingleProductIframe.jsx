@@ -1,6 +1,8 @@
 import { useIframeQuery } from './useIframeQuery.js'
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 function SingleProductIframe({ id, dataImg }) {
 
@@ -38,9 +40,10 @@ function SingleProductIframe({ id, dataImg }) {
              title="Movie trailer"
         ></iframe>
     }else {
-        return <img
+        return <LazyLoadImage
                 src={`https://image.tmdb.org/t/p/w500${dataImg}`}
                 alt="No Trailer Found"
+                effect="blur"
             />
     }
 }

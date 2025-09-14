@@ -1,15 +1,12 @@
 import './homeSlider.style.scss'
-import {useHomeSliderQuery} from "./useHomeSliderQuery.js"
 import HomeSwiper from "../HomeSwiper/HomeSwiper.jsx"
 
 function HomeSlider() {
 
-    const { data, isError, status, error} = useHomeSliderQuery()
-    const loadingArray = new Array(10).fill(null)
+    const loadingArray = new Array(10).fill('photo')
 
     return (<>
-        {isError && <p className='error'>{error.message}</p>}
-        <HomeSwiper data={status === 'success' ? data.results : loadingArray} />
+        <HomeSwiper data={loadingArray} />
     </>)
 }
 

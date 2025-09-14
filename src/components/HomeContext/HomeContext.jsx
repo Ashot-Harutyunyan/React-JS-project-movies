@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import {Link} from "react-router"
 import {TbArrowBigRightLines} from "react-icons/tb"
 import MoviesByGenre from "../MoviesByGenre/MoviesByGenre.jsx"
@@ -7,10 +8,30 @@ import { useLanguage } from "../../ctx/LanguageContext.jsx"
 function HomeContext({data}) {
 
     const [language] = useLanguage()
+    const [desiredLength, setDesiredLength] = useState(2)
+    const [lastTrigger, setLastTrigger] = useState(0)
+    const result = data.slice(0, desiredLength).concat(Array(data.length - desiredLength).fill(null))
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= lastTrigger + 200) {
+                setDesiredLength((prev) => {
+                    if (prev < data.length) {
+                        return prev + 1
+                    }
+                    return prev
+                })
+                setLastTrigger((prev) => prev + 200)
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [lastTrigger, data.length])
 
     return (<>
-        {data.map((item, index)=>{
-            return <div key={item?.id || index}>
+        {result.map((item, index)=>{
+            return <div key={index}>
                 <div className='genre-container'>
                     {item?.name ? <div  className={language.homePage !== 'Watch all' ? 'home-context-ru' : ''}>
                         <h2 className='genre-name'>{item.name}</h2>
@@ -23,7 +44,7 @@ function HomeContext({data}) {
                         <ComponentLoading width={'95px'} height={'25px'}/>
                     </div>}
                 </div>
-                {item?.name ? <MoviesByGenre genreName={item.name} genreId={item.id}/> : <MoviesByGenre/>}
+                {item?.id ? <MoviesByGenre genreId={item.id}/> : <MoviesByGenre/>}
             </div>
         })}
     </>)

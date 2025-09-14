@@ -1,5 +1,8 @@
+import { useState } from "react"
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCoverflow, Pagination, Navigation, Autoplay } from 'swiper/modules'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 import ComponentLoading from '../../components/ComponentLoading/ComponentLoading.jsx'
 
 import 'swiper/css'
@@ -8,6 +11,18 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 function HomeSwiper({data}) {
+
+    const [loadedStates, setLoadedStates] = useState(
+        Array(data.length).fill(false)
+    )
+
+    const handleImageLoad = (index) => {
+        setLoadedStates((prev) => {
+            const updated = [...prev]
+            updated[index] = true
+            return updated
+        })
+    }
 
     return <Swiper
         className='home-swiper-container'
@@ -35,13 +50,17 @@ function HomeSwiper({data}) {
         }}
     >
         {data.map((item, index) => (
-        <SwiperSlide key={item?.id || index}>
+        <SwiperSlide key={index}>
             <div className='home-swiper-container-img'>
-                {item?.urls ? (
-                    <img src={item.urls.regular} alt={item.alt_description} />
-                ) : (
-                    <ComponentLoading width={'100%'} height={'100%'} />
-                )}
+                {!loadedStates[index] && <ComponentLoading width={'100%'} height={'100%'} />}
+                <LazyLoadImage
+                    src={`/${item}-${index + 1}.jpg`}
+                    alt={item}
+                    effect="blur"
+                    threshold={100}
+                    visibleByDefault={true}
+                    afterLoad={() => handleImageLoad(index)}
+                />
             </div>
         </SwiperSlide>
         ))}

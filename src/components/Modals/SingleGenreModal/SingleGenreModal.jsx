@@ -3,6 +3,8 @@ import { useModals } from '../../../ctx/ModalsContext.jsx'
 import { Link, useParams } from 'react-router'
 import {IoCloseSharp} from "react-icons/io5"
 import { LiaLocationArrowSolid } from "react-icons/lia"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 function SingleGenreModal({movie, dialogRef, linkText}) {
 
@@ -25,7 +27,11 @@ function SingleGenreModal({movie, dialogRef, linkText}) {
                         <IoCloseSharp className='modal-single-genre-modal-close-icon'/>
                     </div>
                     <div className="modal-single-genre-content-container-img">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path})`} alt={movie?.title}/>
+                        <LazyLoadImage
+                            src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path})`}
+                            alt={movie?.title}
+                            effect="blur"
+                        />
                     </div>
                     <div className='modal-single-genre-content-info'>
                         <h3>{movie?.title}</h3>

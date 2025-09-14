@@ -7,30 +7,24 @@ import {useAuth} from "../../ctx/AuthContext.jsx"
 import {useModals} from "../../ctx/ModalsContext.jsx"
 import SingleGenreModal from "../Modals/SingleGenreModal/SingleGenreModal.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 function SingleGenre() {
 
     const [language] = useLanguage()
     const { genre, id } = useParams()
     const [ user ] = useAuth()
-    const { handleOpenModal } = useModals()
+    const { handleOpenModal, openModal } = useModals()
     const dialogRef = useRef(null)
     const [movie, setMovie] = useState(null)
 
-    function openModal() {
+    function openSingleGenreModal() {
         dialogRef.current?.showModal()
         handleOpenModal()
     }
 
-    const {
-        data,
-        isError,
-        isLoading,
-        error,
-        fetchNextPage,
-        hasNextPage,
-        isFetchingNextPage
-    } = useSingleGenreQuery(language.url, id)
+    const { data, isError, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage } = useSingleGenreQuery(language.url, id)
 
     const [selected, setSelected] = useState(false)
     const loadingArray = new Array(20).fill(null)
@@ -70,16 +64,22 @@ function SingleGenre() {
                 page.results.map((elem) => (
                     elem.backdrop_path && (
                         <div className="single-genre-container-movie" key={elem.id}
-                            onClick={() => {
+                            onClick={(e) => {
+                                e.stopPropagation()
                                 setMovie(elem)
-                                openModal()
+                                openSingleGenreModal()
                             }}
                         >
-                            <img src={`https://image.tmdb.org/t/p/w500${elem.backdrop_path}`} alt={elem.title} />
+                            <LazyLoadImage
+                                src={`https://image.tmdb.org/t/p/w500${elem.backdrop_path}`}
+                                alt={elem.title}
+                                effect="blur"
+                            />
                             <div>
                                 <h3>{elem.title}</h3>
                                 <p>{elem.release_date.split('-').reverse().join(' ')}</p>
-                                <button onClick={()=> {
+                                <button onClick={(e)=> {
+                                    e.stopPropagation()
                                     if(!user) openModal('authRequiredModal')
                                     else setSelected(!selected)
                                 }}>
