@@ -9,7 +9,7 @@ export function useMoviesByGenreQuery(genreId, url) {
             )
             return response.json()
         },
-        queryKey: ['Genre', genreId],
+        queryKey: ['Genre', genreId, url],
         enabled: !!genreId
     })
 }

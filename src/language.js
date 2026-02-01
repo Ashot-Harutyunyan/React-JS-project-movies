@@ -1,3 +1,5 @@
+import FeaturedMovies from "./components/FeaturedMovies/FeaturedMovies.jsx";
+
 export const english = {
     url: 'en-US',
     homePage: 'Watch all',
@@ -11,14 +13,22 @@ export const english = {
     GoogleAccount: 'Sign in from Google account',
     SearchMovies: 'Search Movies',
     ReleaseDate: 'Release date',
+    noReleaseDate: 'No information about release date',
+    noDescription: 'There is no description for this film',
     Genre: 'Genre',
+    noGenre: 'This movie has no genre information',
     selected: 'selected',
     choose: 'choose',
     ActorsAndCreators: 'Actors and creators',
     NoActorsAndCreators: 'No information about actors and creators',
     nothingFound: 'Nothing found for your request',
     allMovies: 'All movies by genre',
-    watchTrailer: 'Watch trailer'
+    watchTrailer: 'Watch trailer',
+    featuredMoviesTitle: 'My Favorites',
+    featuredMoviesSubtitle: 'Your personally curated collection of amazing movies',
+    noFavoriteMoviesTitle: 'No favorite movies yet',
+    noFavoriteMoviesSubtitle: 'Start building your collection by adding movies you love',
+    browseMoviesLinkText: 'Browse Movies'
 }
 
 export const russia = {
@@ -34,12 +44,20 @@ export const russia = {
     GoogleAccount: 'Войти через аккаунт Google',
     SearchMovies: 'Поиск фильмов',
     ReleaseDate: 'Дата выпуска',
+    noReleaseDate: 'Информация о дате релиза отсутствует',
+    noDescription: 'Описание этого фильма отсутствует',
     Genre: 'Жанр',
+    noGenre: 'В описании этого фильма отсутствует информация о жанре',
     selected: 'выбрано',
     choose: 'выбирать',
     ActorsAndCreators: 'Актеры и создатели',
     NoActorsAndCreators: 'Нет информации об актерах и создателях',
     nothingFound: 'Ничего не найдено по вашему запросу',
     allMovies: 'Все фильмы по жанрам',
-    watchTrailer: 'Смотреть трейлер'
+    watchTrailer: 'Смотреть трейлер',
+    featuredMoviesTitle: 'Мои любимые',
+    featuredMoviesSubtitle: 'Ваша лично подобранная коллекция потрясающих фильмов',
+    noFavoriteMoviesTitle: 'Любимых фильмов пока нет',
+    noFavoriteMoviesSubtitle: 'Начните пополнять свою коллекцию, добавляя любимые фильмы',
+    browseMoviesLinkText: 'Просмотр фильмов'
 }

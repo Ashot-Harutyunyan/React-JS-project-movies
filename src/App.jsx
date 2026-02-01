@@ -4,7 +4,7 @@ import Nav from "./components/nav/nav.jsx"
 import GlobalModals from "./components/Modals/GlobalModals.jsx"
 
 function App() {
-    return (<div className="app-container">
+    return (<>
         <header>
             <Nav/>
         </header>
@@ -12,7 +12,7 @@ function App() {
             <Outlet />
             <GlobalModals/>
         </main>
-    </div>)
+    </>)
 }
 
 export default App

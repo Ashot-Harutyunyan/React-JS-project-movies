@@ -48,6 +48,9 @@
     border: 1px solid white;
     cursor: pointer;
   }
+  input[type=submit]:active {
+    transform: scale(0.95);
+  }
 }
 .container-facebook-google-auth {
   width: 100%;

@@ -6,15 +6,12 @@
 body {
   background-color: #100E19;
   color: white;
-}
-body.no-scroll {
-  overflow: hidden;
-}
-.app-container {
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 16px;
-  box-sizing: border-box;
+}
+body.no-scroll {
+  overflow: hidden;
 }
 .modal-close-container {
   position: absolute;
@@ -78,6 +75,18 @@ dialog {
   margin: 0;
   background: transparent;
   overflow: hidden;
+}
+.error-input-border {
+  border-radius: 5px;
+  border: 2px solid crimson;
+}
+.error-sign-in-message {
+  text-align: center;
+  color: crimson;
+  font-size: clamp(15px, 2vw, 20px);
+}
+.error-sign-in-message.hidden {
+  display: none;
 }
 @media (max-width: 640px) {
   .scrollUp {

@@ -4,6 +4,7 @@ import { useSearchQuery } from "./useSearchQuery.js"
 import ContentImg from "../ContentImg/ContentImg.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import { useLoadingArray } from "../hooks/useLoadingArray.js"
 
 import { IoIosSearch } from "react-icons/io"
 import { RxCrossCircled } from "react-icons/rx"
@@ -15,7 +16,7 @@ function SearchMovies() {
     const [inputSubmit, setInputSubmit] = useState('')
     const [searchOrNot, setSearchOrNot] = useState(true)
     const { data, isError, isLoading, error } = useSearchQuery(language.url, inputSubmit)
-    const arrayLoading = new Array(20).fill(null)
+    const arrayLoading = useLoadingArray(20)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -62,11 +63,10 @@ function SearchMovies() {
                 </div>
             })
             : data.results.length ? data.results.map((elem) => {
-                if(elem.backdrop_path){
                     return <div className='container-search-movies-div' key={elem.id}>
                         <ContentImg {...elem}/>
                     </div>
-                }})
+                })
             : <h2 className='search-nothing-found-message'>{language.nothingFound} <span>{inputSearch}</span></h2>
             }
         </div>

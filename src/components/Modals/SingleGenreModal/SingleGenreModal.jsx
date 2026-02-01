@@ -1,6 +1,7 @@
 import './singleGenreModal.style.scss'
 import { useModals } from '../../../ctx/ModalsContext.jsx'
 import { Link, useParams } from 'react-router'
+import ComponentLoading from '../../ComponentLoading/ComponentLoading.jsx'
 import {IoCloseSharp} from "react-icons/io5"
 import { LiaLocationArrowSolid } from "react-icons/lia"
 import { LazyLoadImage } from 'react-lazy-load-image-component'
@@ -27,11 +28,17 @@ function SingleGenreModal({movie, dialogRef, linkText}) {
                         <IoCloseSharp className='modal-single-genre-modal-close-icon'/>
                     </div>
                     <div className="modal-single-genre-content-container-img">
-                        <LazyLoadImage
-                            src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path})`}
-                            alt={movie?.title}
-                            effect="blur"
-                        />
+                        {!movie ? (
+                            <div className='single-genre-modal-container-loading-img'>
+                                <ComponentLoading width="100%" height="100%" />
+                            </div>
+                        ) : (
+                            <LazyLoadImage
+                                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                                alt={movie.title}
+                                effect="blur"
+                            />
+                        )}
                     </div>
                     <div className='modal-single-genre-content-info'>
                         <h3>{movie?.title}</h3>

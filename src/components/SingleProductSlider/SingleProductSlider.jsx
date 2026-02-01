@@ -5,6 +5,7 @@ import SingleProductModal from "../Modals/SingleProductModal/SingleProductModal.
 import {useModals} from "../../ctx/ModalsContext.jsx"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import { useLoadingArray } from "../hooks/useLoadingArray.js"
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
@@ -20,6 +21,7 @@ function SingleProductSlider({ id }) {
 
     const [language] = useLanguage()
     const { data, isError, isLoading, error } = useSingleProductSliderQuery(id, language.url)
+    const loadingArray = useLoadingArray(14)
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -38,7 +40,7 @@ function SingleProductSlider({ id }) {
             <ComponentLoading width={'250px'} height={'25px'}/>
         </div>
         <div className="SingleProduct-container-loading-Swiper">
-            {new Array(14).fill(null).map((_, index) => (
+            {loadingArray.map((_, index) => (
                 <ComponentLoading key={index} width={'100px'} height={'150px'}/>
             ))}
         </div>

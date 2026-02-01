@@ -41,7 +41,7 @@ function SingleProductIframe({ id, dataImg }) {
         ></iframe>
     }else {
         return <LazyLoadImage
-                src={`https://image.tmdb.org/t/p/w500${dataImg}`}
+                src={dataImg}
                 alt="No Trailer Found"
                 effect="blur"
             />

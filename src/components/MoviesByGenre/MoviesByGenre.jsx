@@ -1,11 +1,12 @@
 import { useMoviesByGenreQuery } from "./useMoviesByGenreQuery.js"
 import MoviesByGenreSlider from "../MoviesByGenreSlider/MoviesByGenreSlider.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import { useLoadingArray } from "../hooks/useLoadingArray.js"
 
 function MoviesByGenre({genreId}) {
 
     const [language] = useLanguage()
-    const loadingArray = new Array(20).fill(null)
+    const loadingArray = useLoadingArray(20)
     const { data, status, isError, error } = useMoviesByGenreQuery(genreId, language.url)
 
     if (!genreId) {

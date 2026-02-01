@@ -1,0 +1,182 @@
+.single-genre-modal-container-loading-img {
+  width: 100%;
+  height: clamp(210px, 45vw, 390px);
+  div {
+    margin: 0;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+}
+.bookmark {
+  width: 20px;
+  height: auto;
+  fill: rgb(77, 77, 77);
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+  svg path {
+    stroke: white;
+  }
+}
+.bookmark::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  -webkit-box-shadow: 0 30px 0 -4px gold,
+  30px 0 0 -4px gold,
+  0 -30px 0 -4px gold,
+  -30px 0 0 -4px gold,
+  -22px 22px 0 -4px gold,
+  -22px -22px 0 -4px gold,
+  22px -22px 0 -4px gold,
+  22px 22px 0 -4px gold;
+  box-shadow: 0 30px 0 -4px gold,
+  30px 0 0 -4px gold,
+  0 -30px 0 -4px gold,
+  -30px 0 0 -4px gold,
+  -22px 22px 0 -4px gold,
+  -22px -22px 0 -4px gold,
+  22px -22px 0 -4px gold,
+  22px 22px 0 -4px gold;
+  border-radius: 50%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+}
+.bookmark::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid gold;
+  opacity: 0;
+}
+.bookmark:hover {
+  fill: rgb(97, 97, 97);
+}
+.bookmark.active::after {
+  -webkit-animation: circles 0.3s
+  cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles 0.3s
+  cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.bookmark.active {
+  fill: gold;
+  -webkit-animation: bookmark 0.3s forwards;
+  animation: bookmark 0.3s forwards;
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.bookmark.active::before {
+  -webkit-animation: circle 0.3s
+  cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle 0.3s
+  cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+@-webkit-keyframes bookmark {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+@keyframes bookmark {
+  50% {
+    -webkit-transform: scaleY(0.6);
+    transform: scaleY(0.6);
+  }
+
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+  }
+}
+@-webkit-keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+@keyframes circle {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  90% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+@keyframes circles {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  to {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}

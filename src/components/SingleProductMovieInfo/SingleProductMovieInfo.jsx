@@ -1,26 +1,26 @@
 import './singleProductMovieInfo.style.scss'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useMovieInfoQuery } from "./useMovieInfoQuery.js"
 import { LiaLocationArrowSolid } from "react-icons/lia"
 import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
-import {useAuth} from "../../ctx/AuthContext.jsx"
-import {useModals} from "../../ctx/ModalsContext.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import Bookmark from "../Bookmark/Bookmark.jsx"
 
 function SingleProductMovieInfo({ id, handleChildData }) {
 
     const [language] = useLanguage()
-    const [ user ] = useAuth()
-    const { openModal } = useModals()
 
     const { data, isError, isLoading, error } = useMovieInfoQuery(id, language.url)
-    const [selected, setSelected] = useState(false)
 
     useEffect(() => {
         if (data?.backdrop_path) {
-            handleChildData(data.backdrop_path);
+            handleChildData(`https://image.tmdb.org/t/p/w500${data.backdrop_path}`)
+        }else {
+            handleChildData('../../../public/horizontally-image-missing.png')
         }
-    }, [data, handleChildData]);
+    }, [data, handleChildData])
+
+    console.log(data)
 
     if(isLoading) return <>
         <div className='SingleProduct-iframe-info'>
@@ -38,32 +38,42 @@ function SingleProductMovieInfo({ id, handleChildData }) {
 
     return (<>
         <div className='SingleProduct-iframe-info'>
-            <div className='SingleProduct-section-one-data'>
-                <span>{language.ReleaseDate}</span><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
-                <span>{data.release_date.split("-").join(" ")}</span>
-            </div>
-            {data.genres.length && <div className='SingleProduct-section-one-info'>
+            {data.release_date !== ''
+                ? <div className='SingleProduct-section-one-data'>
+                        <span>{language.ReleaseDate}</span><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
+                        <span>{data.release_date.split("-").join(" ")}</span>
+                  </div>
+                : <div className='SingleProduct-section-one-data'>
+                        <span>{language.noReleaseDate}</span>
+                  </div>
+            }
+            {data.genres.length > 0 ? <div className='SingleProduct-section-one-info'>
                 <h3>{language.Genre}</h3><LiaLocationArrowSolid className='SingleProduct-icon-arrow-genre'/>
                 {data.genres.map(({ id, name }) => (
                     <span key={id}>{name}</span>
                 ))}
-            </div>}
+            </div>
+            : <div className='SingleProduct-section-one-info'>
+                <h3>{language.noGenre}</h3>
+            </div>
+            }
         </div>
         <div className="SingleProduct-section-two">
             <div className="SingleProduct-section-two-info">
                 <h2>{data.title}</h2>
                 <p>{data.tagline}</p>
-                <p>{data.overview}</p>
+                <p>{data.overview ? data.overview : language.noDescription}</p>
             </div>
-            <button onClick={()=> {
-                if(!user) openModal('authRequiredModal')
-                else setSelected(!selected)
-            }}>
-                {selected ? language.selected : language.choose}
-                <svg xmlns="http://www.w3.org/2000/svg" fill={selected ? 'crimson' : 'transparent'} width="20px" height="20px" viewBox="-5.5 0 24 24">
-                    <path d="m0 2.089v21.911l6.545-6.26 6.544 6.26v-21.911c-.012-1.156-.951-2.089-2.109-2.089-.026 0-.051 0-.077.001h.004-8.724c-.022-.001-.047-.001-.073-.001-1.158 0-2.098.933-2.109 2.088v.001z"/>
-                </svg>
-            </button>
+            <Bookmark
+                variant="button"
+                movie={{
+                    id: data.id,
+                    poster_path: data.poster_path,
+                    title: data.title,
+                    release_date: data.release_date,
+                    overview: data.overview
+                }}
+            />
         </div>
     </>)
 }

@@ -1,16 +1,11 @@
 import './contentImg.style.scss'
-import { useState } from 'react'
-import {useAuth} from "../../ctx/AuthContext.jsx"
-import {useModals} from "../../ctx/ModalsContext.jsx"
+import React from 'react'
 import { Link } from 'react-router'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
+import Bookmark from "../Bookmark/Bookmark.jsx"
 
-function ContentImg({ id, poster_path, title, release_date, popularity }) {
-
-    const [ user ] = useAuth()
-    const { openModal } = useModals()
-    const [featuredMovie, setFeaturedMovie] = useState(false)
+function ContentImg({ id, poster_path, title, release_date, popularity, overview }) {
 
     const arrayConicGradient = [
         {colorOne: '#db2360', colorTwo: '#571435'},
@@ -54,24 +49,24 @@ function ContentImg({ id, poster_path, title, release_date, popularity }) {
         <div className='SwiperSlide-container'>
             <Link to={`/product/${id}`}>
                 <div className='SwiperSlide-container-div-hover'>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill={featuredMovie ? 'crimson' : 'transparent'} width="50px" height="50px" viewBox="-5.5 0 24 24"
-                         onClick={(e) => {
-                             e.preventDefault()
-                             if(!user) {
-                                 openModal('authRequiredModal')
-                                 return
-                             }
-                             setFeaturedMovie(!featuredMovie)
-                         }}>
-                        <path d="m0 2.089v21.911l6.545-6.26 6.544 6.26v-21.911c-.012-1.156-.951-2.089-2.109-2.089-.026 0-.051 0-.077.001h.004-8.724c-.022-.001-.047-.001-.073-.001-1.158 0-2.098.933-2.109 2.088v.001z"/>
-                    </svg>
+                    <Bookmark
+                        bookmark="on"
+                        movie={{id, poster_path, title, release_date, overview}}
+                    />
                     <p>{release_date.slice(0, 4)}</p>
                 </div>
-                <LazyLoadImage
-                    src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                    alt={title}
-                    effect="blur"
-                />
+                {poster_path !== null
+                    ? <LazyLoadImage
+                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                        alt={title}
+                        effect="blur"
+                      />
+                    : <LazyLoadImage
+                        src='../../../public/image-missing.png'
+                        alt={title}
+                        effect="blur"
+                      />
+                }
             </Link>
         </div>
         <div className='container-popularity-movie'>

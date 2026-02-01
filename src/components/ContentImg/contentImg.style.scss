@@ -18,12 +18,8 @@
     padding: 15px 15px 50px 15px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    svg {
+    .bookmark {
       width: 30px;
-      height: 30px;
-    }
-    svg path {
-      stroke: white;
     }
     p {
       width: 100%;
@@ -113,4 +109,3 @@
     height: 50px;
   }
 }
-

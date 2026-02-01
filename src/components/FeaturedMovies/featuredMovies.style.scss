@@ -1,0 +1,80 @@
+.container-featured-movies {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.container-featured-movies-title {
+  font-size: clamp(25px, 5vw, 50px);
+  color: #FFFFFF;
+  padding-top: 50px;
+}
+.container-featured-movies-small-title {
+  color: #8C8C8C;
+  margin: 8px 0 50px 0;
+  font-size: clamp(12px, 2vw, 25px);
+}
+.container-no-favorite-movies {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+.container-no-favorite-movies-title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.container-no-favorite-movies-title-text h2 {
+  color: #FFFFFF;
+  text-align: center;
+  font-size: clamp(20px, 4vw, 35px);
+}
+.container-no-favorite-movies-title-text p {
+  color: #8C8C8C;
+  text-align: center;
+  font-size: clamp(12px, 2vw, 20px);
+}
+.no-favorite-movies-container-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  font-size: 56px;
+}
+.browse-movies-link {
+  color: #FFFFFF;
+  background-color: #E50914;
+  padding: 16px 40px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.browse-movies-link:active {
+  transform: scale(0.95);
+}
+.container-featured-movies-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  .modal-single-genre-content {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    position: unset;
+    transform: translate(0, 0);
+  }
+  .modal-single-genre-content .modal-single-genre-content-background {
+    background: none;
+    height: max-content;
+  }
+}
+.featured-movies-container-bookmark {
+  width: 100%;
+  display: flex;
+  align-items: end;
+  padding-right: 10px;
+}

@@ -3,12 +3,13 @@ import HomeSlider from "../HomeSlider/HomeSlider.jsx"
 import HomeContext from "../HomeContext/HomeContext.jsx"
 import { useHomeContextQuery } from "./useHomeContextQuery.js"
 import { useLanguage } from '../../ctx/LanguageContext.jsx'
+import { useLoadingArray } from "../hooks/useLoadingArray.js"
 
 function Home() {
 
     const [language] = useLanguage()
     const { data, isError, status, error} = useHomeContextQuery(language.url)
-    const loadingArray = new Array(20).fill(null)
+    const loadingArray = useLoadingArray(20)
 
     return (<>
         {isError && <p className='error'>{error.message}</p>}
