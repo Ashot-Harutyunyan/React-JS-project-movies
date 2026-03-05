@@ -1,9 +1,7 @@
 import './contentImg.style.scss'
-import React from 'react'
 import { Link } from 'react-router'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
 import Bookmark from "../Bookmark/Bookmark.jsx"
+import Image from "../Image/Image.jsx"
 
 function ContentImg({ id, poster_path, title, release_date, popularity, overview }) {
 
@@ -55,18 +53,7 @@ function ContentImg({ id, poster_path, title, release_date, popularity, overview
                     />
                     <p>{release_date.slice(0, 4)}</p>
                 </div>
-                {poster_path !== null
-                    ? <LazyLoadImage
-                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                        alt={title}
-                        effect="blur"
-                      />
-                    : <LazyLoadImage
-                        src='../../../public/image-missing.png'
-                        alt={title}
-                        effect="blur"
-                      />
-                }
+                <Image url={poster_path} alt={title} horizontally={false} />
             </Link>
         </div>
         <div className='container-popularity-movie'>

@@ -1,0 +1,22 @@
+.query-text-error-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.query-text-error-title {
+  margin-bottom: 10px;
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: 100;
+  font-family: "Courier New", Courier, monospace;
+}
+.query-text-error-message {
+  color: crimson;
+  font-weight: 100;
+  font-size: clamp(12px, 2vw, 16px);
+  font-family: "Courier New", Courier, monospace;
+  word-break: break-word;
+}

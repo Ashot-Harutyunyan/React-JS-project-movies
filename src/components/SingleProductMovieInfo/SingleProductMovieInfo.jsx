@@ -1,40 +1,25 @@
 import './singleProductMovieInfo.style.scss'
-import { useEffect } from 'react'
 import { useMovieInfoQuery } from "./useMovieInfoQuery.js"
 import { LiaLocationArrowSolid } from "react-icons/lia"
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
 import Bookmark from "../Bookmark/Bookmark.jsx"
+import SingleProductMovieInfoLoading from "./SingleProductMovieInfoLoading.jsx"
+import QueryGifError from "../QueryGifError/QueryGifError.jsx"
 
-function SingleProductMovieInfo({ id, handleChildData }) {
+function SingleProductMovieInfo({ id, setDataImg }) {
 
     const [language] = useLanguage()
 
-    const { data, isError, isLoading, error } = useMovieInfoQuery(id, language.url)
+    const { data, isError, isLoading, error } = useMovieInfoQuery(id, language.url, handleChangeStateImg)
 
-    useEffect(() => {
-        if (data?.backdrop_path) {
-            handleChildData(`https://image.tmdb.org/t/p/w500${data.backdrop_path}`)
-        }else {
-            handleChildData('../../../public/horizontally-image-missing.png')
-        }
-    }, [data, handleChildData])
+    function  handleChangeStateImg(stateImg) {
+        console.log(stateImg, 'handleChangeStateImg')
+        if(!stateImg) setDataImg('../../../public/horizontally-image-missing.png')
+        else setDataImg('https://image.tmdb.org/t/p/w500' + stateImg)
+    }
 
-    console.log(data)
-
-    if(isLoading) return <>
-        <div className='SingleProduct-iframe-info'>
-            <ComponentLoading width={'200px'} height={'25px'}/>
-            <ComponentLoading width={'200px'} height={'25px'}/>
-        </div>
-        <div className="SingleProduct-section-two">
-            <ComponentLoading width={'200px'} height={'40px'}/>
-            <ComponentLoading width={'250px'} height={'25px'}/>
-            <ComponentLoading width={'90%'} height={'80px'}/>
-            <ComponentLoading width={'200px'} height={'40px'}/>
-        </div>
-    </>
-    if(isError) return <p className='error'>{error.message}</p>
+    if(isLoading) return <SingleProductMovieInfoLoading/>
+    if(isError) return <QueryGifError title='pageErrorTitleMovieInfo' message={error.message}/>
 
     return (<>
         <div className='SingleProduct-iframe-info'>

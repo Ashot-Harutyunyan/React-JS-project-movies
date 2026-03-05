@@ -11,10 +11,6 @@ function SingleProduct() {
     const [dataImg, setDataImg] = useState(null)
     let productId = id
 
-    const handleChildData = (childData) => {
-        setDataImg(childData)
-    }
-
     if(movieId){
         productId = movieId
     }
@@ -23,10 +19,10 @@ function SingleProduct() {
         <section className='SingleProduct-container'>
                 <div className="SingleProduct-section-one">
                     <div className='SingleProduct-container-iframe'>
-                        <SingleProductIframe id={productId} dataImg={dataImg} />
+                        <SingleProductIframe id={productId} dataImg={dataImg}/>
                     </div>
                 </div>
-                <SingleProductMovieInfo id={productId} handleChildData={handleChildData}/>
+                <SingleProductMovieInfo id={productId} setDataImg={setDataImg}/>
         </section>
         <SingleProductSlider id={productId}/>
     </>)

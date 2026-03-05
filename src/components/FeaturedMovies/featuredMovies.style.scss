@@ -70,6 +70,9 @@
   .modal-single-genre-content .modal-single-genre-content-background {
     background: none;
     height: max-content;
+    .modal-single-genre-content-container-img .component-loading {
+      margin: 0;
+    }
   }
 }
 .featured-movies-container-bookmark {

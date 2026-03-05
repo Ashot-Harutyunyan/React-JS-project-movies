@@ -2,6 +2,7 @@ import { useMoviesByGenreQuery } from "./useMoviesByGenreQuery.js"
 import MoviesByGenreSlider from "../MoviesByGenreSlider/MoviesByGenreSlider.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
 import { useLoadingArray } from "../hooks/useLoadingArray.js"
+import QueryGifError from "../QueryGifError/QueryGifError.jsx"
 
 function MoviesByGenre({genreId}) {
 
@@ -14,8 +15,10 @@ function MoviesByGenre({genreId}) {
     }
 
     return (<>
-        {isError && <p className='error'>{error.message}</p>}
-        <MoviesByGenreSlider data={status === 'success' ? data : loadingArray}/>
+        {isError
+            ? <QueryGifError title='errorLoadingMovies' message={error.message}/>
+            : <MoviesByGenreSlider data={status === 'success' ? data : loadingArray}/>
+        }
     </>)
 }
 

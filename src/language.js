@@ -1,5 +1,3 @@
-import FeaturedMovies from "./components/FeaturedMovies/FeaturedMovies.jsx";
-
 export const english = {
     url: 'en-US',
     homePage: 'Watch all',
@@ -28,7 +26,23 @@ export const english = {
     featuredMoviesSubtitle: 'Your personally curated collection of amazing movies',
     noFavoriteMoviesTitle: 'No favorite movies yet',
     noFavoriteMoviesSubtitle: 'Start building your collection by adding movies you love',
-    browseMoviesLinkText: 'Browse Movies'
+    browseMoviesLinkText: 'Browse Movies',
+    error404: '404 Page Not Found',
+    error404message: 'Unfortunately, the page you requested does not exist.',
+    error401: '401 Authorization required',
+    error401message: 'Please log in.',
+    error503: '503 Service Unavailable',
+    error503message: 'Please try again later.',
+    unknownErrorTitle: 'An error occurred',
+    unknownErrorMessage: 'Unknown error',
+    errorLinkBackText: 'Back to home',
+    pageErrorTitle: 'Loading Error',
+    pageErrorTitleVideo: 'Video Loading Error',
+    pageErrorTitleActors: 'Error Loading Actors',
+    pageErrorTitleMovieInfo: 'Error Loading Movie Information',
+    errorLoadingMovies: 'Error loading movies',
+    errorLoadingGenresAndMovies: 'Error loading genres and movies',
+    errorLoadingFeaturedMovies: 'Error loading featured movies'
 }
 
 export const russia = {
@@ -59,5 +73,21 @@ export const russia = {
     featuredMoviesSubtitle: 'Ваша лично подобранная коллекция потрясающих фильмов',
     noFavoriteMoviesTitle: 'Любимых фильмов пока нет',
     noFavoriteMoviesSubtitle: 'Начните пополнять свою коллекцию, добавляя любимые фильмы',
-    browseMoviesLinkText: 'Просмотр фильмов'
+    browseMoviesLinkText: 'Просмотр фильмов',
+    error404: '404 Страница не найдена',
+    error404message: 'К сожалению, запрашиваемая страница не существует.',
+    error401: '401 Требуется авторизация',
+    error401message: 'Пожалуйста, войдите в систему.',
+    error503: '503 Сервис недоступен',
+    error503message: 'Попробуйте позже.',
+    unknownErrorTitle: 'Произошла ошибка',
+    unknownErrorMessage: 'Неизвестная ошибка',
+    errorLinkBackText:  'Вернуться на главную',
+    pageErrorTitle: 'Ошибка Загрузки',
+    pageErrorTitleVideo: 'Ошибка Загрузки Видео',
+    pageErrorTitleActors: 'Ошибка Загрузки Акторов',
+    pageErrorTitleMovieInfo: 'Ошибка Загрузки Информации О Фильме',
+    errorLoadingMovies: 'Ошибка загрузки фильмов',
+    errorLoadingGenresAndMovies: 'Ошибка загрузки жанров и фильмов',
+    errorLoadingFeaturedMovies: 'Ошибка при загрузке избранных фильмов'
 }

@@ -5,16 +5,15 @@ import { useLanguage } from "../../ctx/LanguageContext.jsx"
 import { useParams } from "react-router"
 import {useModals} from "../../ctx/ModalsContext.jsx"
 import SingleGenreModal from "../Modals/SingleGenreModal/SingleGenreModal.jsx"
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import Bookmark from "../Bookmark/Bookmark.jsx"
-import { useLoadingArray } from "../hooks/useLoadingArray.js"
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css'
+import Image from "../Image/Image.jsx"
+import SingleGenreLoading from "./SingleGenreLoading.jsx"
+import QueryGifError from "../QueryGifError/QueryGifError.jsx";
 
 function SingleGenre() {
 
     const [language] = useLanguage()
-    const { genre, id } = useParams()
+    const { id } = useParams()
     const { handleOpenModal, openModal } = useModals()
     const dialogRef = useRef(null)
     const [movie, setMovie] = useState(null)
@@ -26,9 +25,7 @@ function SingleGenre() {
 
     const { data, isError, isLoading, error, fetchNextPage, hasNextPage, isFetchingNextPage } = useSingleGenreQuery(language.url, id)
 
-    const loadingArray = useLoadingArray(20)
-
-        useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
             if (
                 window.innerHeight + window.scrollY >= document.body.scrollHeight - 100 &&
@@ -43,25 +40,16 @@ function SingleGenre() {
 
     }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
-    if (isLoading) return <div className='scrollUp loading'>
-        <ComponentLoading width={'300px'} height={'35px'} />
-        <div className="single-genre loading">
-            {loadingArray.map((_, index) => (
-                <div className="single-genre-container-movie" key={index}>
-                    <ComponentLoading width={'clamp(160px, 20vw, 260px)'} height={'clamp(80px, 10vw, 160px)'} />
-                    <ComponentLoading width={'clamp(160px, 20vw, 260px)'} height={'clamp(60px, 8vw, 100px)'} />
-                </div>
-            ))}
-        </div>
+    if (isLoading) return <SingleGenreLoading loadingNextPage={false}/>
+    if (isError) return <div className="scrollUp">
+        <QueryGifError title='errorLoadingFeaturedMovies' message={error.message}/>
     </div>
-    if (isError) return <p className="error scrollUp">{error.message}</p>
 
     return (<>
-        <h2 className='scrollUp single-genre-title'>{language.allMovies} {genre.toLowerCase()}</h2>
+        <h2 className='scrollUp single-genre-title'>{language.allMovies} {data.pages[0].genreName.toLowerCase()}</h2>
         <section className="single-genre">
             {data.pages.map(page =>
                 page.results.map((elem) => (
-                    elem.backdrop_path && (
                         <div className="single-genre-container-movie" key={elem.id}
                             onClick={(e) => {
                                 e.stopPropagation()
@@ -70,11 +58,7 @@ function SingleGenre() {
                                 setMovie(elem)
                             }}
                         >
-                            <LazyLoadImage
-                                src={`https://image.tmdb.org/t/p/w500${elem.backdrop_path}`}
-                                alt={elem.title}
-                                effect="blur"
-                            />
+                            <Image url={elem.backdrop_path} alt={elem.title} horizontally={true} />
                             <div>
                                 <h3>{elem.title}</h3>
                                 <p>{elem.release_date.split('-').reverse().join(' ')}</p>
@@ -90,15 +74,9 @@ function SingleGenre() {
                                 />
                             </div>
                         </div>
-                    )
                 ))
             )}
-            {isFetchingNextPage && loadingArray.map((_, index) => (
-                <div className="single-genre-container-movie" key={index}>
-                    <ComponentLoading width={'clamp(160px, 20vw, 260px)'} height={'clamp(80px, 10vw, 160px)'} />
-                    <ComponentLoading width={'clamp(160px, 20vw, 260px)'} height={'clamp(60px, 8vw, 100px)'} />
-                </div>
-            ))}
+            {isFetchingNextPage && <SingleGenreLoading loadingNextPage={true}/>}
         </section>
         <SingleGenreModal movie={movie} dialogRef={dialogRef} linkText={language.watchTrailer} />
     </>)

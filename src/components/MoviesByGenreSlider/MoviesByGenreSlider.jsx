@@ -41,7 +41,7 @@ function MoviesByGenreSlider({data}) {
                            swiper.navigation.update();
                        }}
         >
-            {data.results ? data.results.map((elem, i) => {
+            {data.results ? data.results.map((elem) => {
                 return <SwiperSlide key={elem.id} className='movies-by-genre-swiper-slide'>
                     <ContentImg {...elem} />
                 </SwiperSlide>})
@@ -51,7 +51,7 @@ function MoviesByGenreSlider({data}) {
                         <ComponentLoading width={'100%'} height={'100%'} />
                      </div>
                 </SwiperSlide>
-                })}
+            })}
         </Swiper>
     </div>
 }

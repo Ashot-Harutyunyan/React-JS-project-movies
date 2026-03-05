@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 function HomeSwiper({data}) {
 
     const [loadedStates, setLoadedStates] = useState(
-        Array(data.length).fill(false)
+        new Array(data.length).fill(false)
     )
 
     const handleImageLoad = (index) => {
@@ -60,6 +60,7 @@ function HomeSwiper({data}) {
                     threshold={100}
                     visibleByDefault={true}
                     afterLoad={() => handleImageLoad(index)}
+                    style={{display: !loadedStates[index] ? 'none' : 'block' }}
                 />
             </div>
         </SwiperSlide>

@@ -57,9 +57,7 @@ function Nav() {
                  }}
             >
                 <div className='click-memory-language'>
-                    <div className='GBP'
-                         style={{gridRow: memoryLanguage ? '1/2' : '2/3'}}
-                    >
+                    <div className='GBP' style={{gridRow: memoryLanguage ? '1/2' : '2/3'}}>
                         <img src="/United-Kingdom.png" alt="GBP"/>
                     </div>
 

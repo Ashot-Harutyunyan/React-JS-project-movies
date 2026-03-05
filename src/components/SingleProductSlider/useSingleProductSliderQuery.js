@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { API_KEY, BASE_URL} from "../../apiConfig.js";
+import { API_KEY, BASE_URL} from "../../apiConfig.js"
 
 export function useSingleProductSliderQuery(id, url){
     return useQuery({

@@ -2,10 +2,10 @@ import './singleProductSlider.style.scss'
 import { useRef, useState } from 'react'
 import { useSingleProductSliderQuery } from './useSingleProductSliderQuery.js'
 import SingleProductModal from "../Modals/SingleProductModal/SingleProductModal.jsx"
+import SingleProductSliderLoading from "./SingleProductSliderLoading.jsx"
+import QueryTextError from "../QueryTextError/QueryTextError.jsx"
 import {useModals} from "../../ctx/ModalsContext.jsx"
-import ComponentLoading from "../ComponentLoading/ComponentLoading.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
-import { useLoadingArray } from "../hooks/useLoadingArray.js"
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css'
 
@@ -21,7 +21,6 @@ function SingleProductSlider({ id }) {
 
     const [language] = useLanguage()
     const { data, isError, isLoading, error } = useSingleProductSliderQuery(id, language.url)
-    const loadingArray = useLoadingArray(14)
 
     const prevRef = useRef(null)
     const nextRef = useRef(null)
@@ -35,17 +34,8 @@ function SingleProductSlider({ id }) {
         handleOpenModal()
     }
 
-    if(isLoading) return <>
-        <div className='SingleProduct-container-loading-title'>
-            <ComponentLoading width={'250px'} height={'25px'}/>
-        </div>
-        <div className="SingleProduct-container-loading-Swiper">
-            {loadingArray.map((_, index) => (
-                <ComponentLoading key={index} width={'100px'} height={'150px'}/>
-            ))}
-        </div>
-    </>
-    if(isError) return <p className='error'>{error.message}</p>
+    if(isLoading) return <SingleProductSliderLoading/>
+    if(isError) return <QueryTextError title='pageErrorTitleActors' message={error.message} />
 
     return (<>
         <h2 className="SingleProduct-Actors-and-creators">
@@ -57,21 +47,11 @@ function SingleProductSlider({ id }) {
             <Swiper modules={[Navigation]}
                     spaceBetween={20}
                     breakpoints={{
-                        265: { slidesPerView: 2 },
-                        310: { slidesPerView: 2.5 },
-                        345: { slidesPerView: 3 },
-                        425: { slidesPerView: 3.5 },
-                        480: { slidesPerView: 4 },
-                        550: { slidesPerView: 4.5 },
-                        615: { slidesPerView: 5 },
-                        730: { slidesPerView: 5.5 },
-                        840: { slidesPerView: 6.5 },
-                        940: { slidesPerView: 7.5 },
-                        1070: { slidesPerView: 8.5 },
-                        1190: { slidesPerView: 9.5 },
-                        1300: { slidesPerView: 10.5 },
-                        1400: { slidesPerView: 11.5 },
-                        1500: { slidesPerView: 12.5 },
+                        265: { slidesPerView: 2 }, 310: { slidesPerView: 2.5 }, 345: { slidesPerView: 3 },
+                        425: { slidesPerView: 3.5 }, 480: { slidesPerView: 4 }, 550: { slidesPerView: 4.5 },
+                        615: { slidesPerView: 5 }, 730: { slidesPerView: 5.5 }, 840: { slidesPerView: 6.5 },
+                        940: { slidesPerView: 7.5 }, 1070: { slidesPerView: 8.5 }, 1190: { slidesPerView: 9.5 },
+                        1300: { slidesPerView: 10.5 }, 1400: { slidesPerView: 11.5 }, 1500: { slidesPerView: 12.5 },
                     }}
                     onInit={(swiper) => {
                         swiper.params.navigation.prevEl = prevRef.current;

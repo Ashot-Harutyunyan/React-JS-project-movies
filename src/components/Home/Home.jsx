@@ -4,6 +4,7 @@ import HomeContext from "../HomeContext/HomeContext.jsx"
 import { useHomeContextQuery } from "./useHomeContextQuery.js"
 import { useLanguage } from '../../ctx/LanguageContext.jsx'
 import { useLoadingArray } from "../hooks/useLoadingArray.js"
+import QueryGifError from "../QueryGifError/QueryGifError.jsx"
 
 function Home() {
 
@@ -12,9 +13,11 @@ function Home() {
     const loadingArray = useLoadingArray(20)
 
     return (<>
-        {isError && <p className='error'>{error.message}</p>}
         <HomeSlider/>
-        <HomeContext data={status === 'success' ? data.genres : loadingArray}/>
+        {isError
+            ? <QueryGifError title='errorLoadingGenresAndMovies' message={error.message}/>
+            : <HomeContext data={status === 'success' ? data.genres : loadingArray}/>
+        }
     </>)
 }
 

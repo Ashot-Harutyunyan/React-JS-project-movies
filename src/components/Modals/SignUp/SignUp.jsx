@@ -49,7 +49,7 @@ function SignUp({closeModal, activeModal}) {
 
     return (<div style={{display: activeModal ? 'flex' : 'none'}} className="modal-signUp">
         <div className='modal-close-container'>
-            <IoCloseSharp onClick={()=>{
+            <IoCloseSharp onClick={()=> {
                 closeModal()
                 setInputs({email: "", password: ""})
                 setError(null)
@@ -82,7 +82,7 @@ function SignUp({closeModal, activeModal}) {
                         onChange={handleChange}
                     />
                 </div>
-                <p className={error ? 'error-sign-in-message' : 'error-sign-in-message hidden'}>{error}</p>
+                <p className={error ? 'error-sign-in-sign-up-message' : 'error-sign-in-sign-up-message hidden'}>{error}</p>
                 <input type="submit" value={language.SignUp}/>
             </form>
             <div className='container-facebook-google-auth'>

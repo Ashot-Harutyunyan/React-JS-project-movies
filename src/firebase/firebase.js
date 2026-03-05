@@ -97,7 +97,7 @@ async function deleteFavoriteMovie(movieId) {
 
         return true
     } catch (error) {
-        console.error("Error removing from favorites", error)
+        console.error("QueryGifError removing from favorites", error)
         return false
     }
 }
