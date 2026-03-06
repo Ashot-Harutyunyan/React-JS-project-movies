@@ -1,46 +1,36 @@
 import './errorBoundary.style.scss'
-import { useRouteError, isRouteErrorResponse, Link } from 'react-router'
+import {useRouteError, isRouteErrorResponse, Link} from 'react-router'
 import ErrorBoundaryAnimation from "./ErrorBoundaryAnimation.jsx"
-import { useLanguage } from "../../ctx/LanguageContext.jsx"
+import {useLanguage} from "../../ctx/LanguageContext.jsx"
 
-function ErrorBoundary() {
+function ErrorBoundary(){
 
     const error = useRouteError()
     const [language] = useLanguage()
 
-    if (isRouteErrorResponse(error)) {
-        if (error.status === 404) {
-            return <div className='container-error-boundary'>
-                    <h1 className='error-boundary-title'>{language.error404}</h1>
-                    <p className='error-boundary-message'>{language.error404message}</p>
-                    <ErrorBoundaryAnimation />
-                    <Link to="/" className="error-boundary-link-back">{language.errorLinkBackText}</Link>
-            </div>
-        }
+    const {status, message} = error
 
-        if (error.status === 401) {
-            return <div className='container-error-boundary'>
-                    <h1 className='error-boundary-title'>{language.error401}</h1>
-                    <p className='error-boundary-message'>{language.error401message}</p>
-                    <ErrorBoundaryAnimation />
-                    <Link to="/" className="error-boundary-link-back">{language.errorLinkBackText}</Link>
-            </div>
+    function getErrorDisplayContent(error, status){
+        const knownStatuses = [404, 401, 503]
+        if(isRouteErrorResponse(error) && knownStatuses.includes(status)){
+            return {
+                errorTitle: language[`error${status}`], 
+                errorText: language[`error${status}message`]
+            }
         }
-
-        if (error.status === 503) {
-            return <div className='container-error-boundary'>
-                    <h1 className='error-boundary-title'>{language.error503}</h1>
-                    <p className='error-boundary-message'>{language.error503message}</p>
-                    <ErrorBoundaryAnimation />
-            </div>
+        return {
+            errorTitle: language.unknownErrorTitle, 
+            errorText: message || language.unknownErrorMessage
         }
     }
 
+    const {errorTitle, errorText} = getErrorDisplayContent(error, status)
+
     return <div className='container-error-boundary'>
-            <h1 className='error-boundary-title'>{language.unknownErrorTitle}</h1>
-            <p className='error-boundary-message'>{error?.message || language.unknownErrorMessage}</p>
-            <ErrorBoundaryAnimation />
-            <Link to="/" className="error-boundary-link-back">{language.errorLinkBackText}</Link>
+        <h1 className='error-boundary-title'>{errorTitle}</h1>
+        <p className='error-boundary-message'>{errorText}</p>
+        <ErrorBoundaryAnimation/>
+        {status !== 503 && <Link to="/" className="error-boundary-link-back">{language.errorLinkBackText}</Link>}
     </div>
 }
 

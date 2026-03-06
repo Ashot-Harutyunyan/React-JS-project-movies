@@ -32,50 +32,47 @@ const queryClient = new QueryClient({
 })
 
 const router = createBrowserRouter([
-    {
+    { 
         path: '/',
-        element: <App />,
-        errorElement: <ErrorBoundary />,
+        element: <App/>, 
+        errorElement: <ErrorBoundary/>, 
         children: [
             {
-                index: true,
-                element: <Home />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: 'SearchMovies',
-                element: <SearchMovies />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: 'SearchMovies/:id',
-                element: <SingleProduct />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: 'FeaturedMovies',
-                element: <FeaturedMovies />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: 'FeaturedMovies/:id',
-                element: <SingleProduct />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: 'product/:id',
-                element: <SingleProduct />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: ':genre/:id',
-                element: <SingleGenre />,
-                errorElement: <ErrorBoundary />
-            },
-            {
-                path: ':genre/:id/:movieId',
-                element: <SingleProduct />,
-                errorElement: <ErrorBoundary />
+                errorElement: <ErrorBoundary/>, 
+                children: [
+                    {
+                        index: true, 
+                        element: <Home/>,
+                    }, 
+                    {
+                        path: 'SearchMovies', 
+                        element: <SearchMovies/>,
+                    }, 
+                    {
+                        path: 'SearchMovies/:id', 
+                        element: <SingleProduct/>,
+                    }, 
+                    {
+                        path: 'FeaturedMovies', 
+                        element: <FeaturedMovies/>,
+                    }, 
+                    {
+                        path: 'FeaturedMovies/:id', 
+                        element: <SingleProduct/>,
+                    }, 
+                    {
+                        path: 'product/:id',
+                        element: <SingleProduct/>,
+                    }, 
+                    {
+                        path: ':genre/:id', 
+                        element: <SingleGenre/>,
+                    }, 
+                    {
+                        path: ':genre/:id/:movieId',
+                        element: <SingleProduct/>,
+                    }
+                ]
             }
         ]
     }

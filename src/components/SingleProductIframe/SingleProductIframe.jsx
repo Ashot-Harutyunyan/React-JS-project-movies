@@ -11,7 +11,7 @@ function SingleProductIframe({ id, dataImg }) {
     const { data, isError, isLoading, error } = useIframeQuery(id, language.url, dataImg)
 
     if(!dataImg || isLoading) return <ComponentLoading width={'100%'} height={'100%'}/>
-    if(isError) return <QueryTextError title='pageErrorTitleMovieInfo' message={error.message}/>
+    if(isError) return <QueryTextError title='pageErrorTitleVideo' message={error.message}/>
 
 
     const videos = data.videos.filter(
