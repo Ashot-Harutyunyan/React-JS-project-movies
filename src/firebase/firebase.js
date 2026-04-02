@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app"
 import { getAuth, GoogleAuthProvider, signInWithPopup,
     signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth"
 import { getFirestore, doc, setDoc, arrayUnion, getDoc, updateDoc } from "firebase/firestore"
+import { BASE_URL, API_KEY } from "../apiConfig.js"
 
 const config = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -17,9 +18,7 @@ export const auth = getAuth(app)
 const db = getFirestore(app)
 
 const googleAuth = new GoogleAuthProvider(auth)
-googleAuth.setCustomParameters({
-    prompt: 'select_account'
-})
+googleAuth.setCustomParameters({ prompt: 'select_account' })
 
 export const popUp = async () => {
     return signInWithPopup(auth, googleAuth)
@@ -28,7 +27,7 @@ export const popUp = async () => {
 export const emailLogin = async (email, password) => {
     try {
         return await signInWithEmailAndPassword(auth, email, password)
-    } catch(error) {
+    } catch (error) {
         console.error("Firebase error:", error.code)
         throw error.code
     }
@@ -47,67 +46,54 @@ export const logout = async () => {
     return signOut(auth)
 }
 
-export const toggleFavoriteMovie = async (movie) => {
+const LOCALES = ['ru-RU', 'en-US']
+
+export const toggleFavoriteMovieAllLocales = async (movie) => {
     const user = auth.currentUser
     if (!user) return false
 
     const userRef = doc(db, "users", user.uid)
     const snap = await getDoc(userRef)
 
-    const favorites = snap.exists() ? snap.data().favorites || [] : []
-
-    const alreadyExists = favorites.some(
-        (fav) => fav.id === movie.id
-    )
+    const firstField = `favorites_${LOCALES[0]}`
+    const firstFavorites = snap.exists() ? snap.data()[firstField] || [] : []
+    const alreadyExists = firstFavorites.some((fav) => fav.id === movie.id)
 
     if (alreadyExists) {
-        console.log("The film is already in your favorites")
-        deleteFavoriteMovie(movie.id)
+        const updates = {}
+        for (const locale of LOCALES) {
+            const field = `favorites_${locale}`
+            const favorites = snap.exists() ? snap.data()[field] || [] : []
+            updates[field] = favorites.filter((fav) => fav.id !== movie.id)
+        }
+        await updateDoc(userRef, updates)
         return false
     }
 
-    await setDoc(
-        userRef,
-        { favorites: arrayUnion(movie) },
-        { merge: true }
+    const movieDataPerLocale = await Promise.all(
+        LOCALES.map(async (locale) => {
+            const res = await fetch(`${BASE_URL}/movie/${movie.id}?api_key=${API_KEY}&language=${locale}`)
+            const data = await res.json()
+            return { locale, data }
+        })
     )
+
+    const newFields = {}
+    for (const { locale, data } of movieDataPerLocale) {
+        newFields[`favorites_${locale}`] = arrayUnion(data)
+    }
+    await setDoc(userRef, newFields, { merge: true })
 
     return true
 }
 
-async function deleteFavoriteMovie(movieId) {
-    const user = auth.currentUser
-    if (!user) return false
-
-    try {
-        const userRef = doc(db, "users", user.uid)
-        const snap = await getDoc(userRef)
-
-        if (!snap.exists()) return false
-
-        const favorites = snap.data().favorites || []
-
-        const updatedFavorites = favorites.filter(
-            (movie) => movie.id !== movieId
-        )
-
-        await updateDoc(userRef, {
-            favorites: updatedFavorites
-        })
-
-        return true
-    } catch (error) {
-        console.error("QueryGifError removing from favorites", error)
-        return false
-    }
-}
-
-export const getFavoritesArray = async () => {
+export const getFavoritesArray = async (locale) => {
     const user = auth.currentUser
     if (!user) return []
 
     const snap = await getDoc(doc(db, "users", user.uid))
     if (!snap.exists()) return []
 
-    return snap.data().favorites || []
+    const field = `favorites_${locale}`
+    return snap.data()[field] || []
 }

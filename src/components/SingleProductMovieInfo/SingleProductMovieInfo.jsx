@@ -14,7 +14,7 @@ function SingleProductMovieInfo({ id, setDataImg }) {
 
     function  handleChangeStateImg(stateImg) {
         console.log(stateImg, 'handleChangeStateImg')
-        if(!stateImg) setDataImg('../../../public/horizontally-image-missing.png')
+        if(!stateImg) setDataImg('/horizontally-image-missing.png')
         else setDataImg('https://image.tmdb.org/t/p/w500' + stateImg)
     }
 

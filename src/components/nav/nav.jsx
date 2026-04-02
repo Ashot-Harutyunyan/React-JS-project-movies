@@ -30,13 +30,13 @@ function Nav() {
         </div>
 
         <section className='nav-section'>
-            <Link to='SearchMovies' className='link-page-search'>
+            <Link to='searchMovies' className='link-page-search'>
                 <IoIosSearch className='search-icon'/>
                 <p>{language.Search}</p>
             </Link>
 
             <div className='nav-section-language-and-icon'>
-                <Link to='FeaturedMovies' className='link-selected'>
+                <Link to='featuredMovies' className='link-selected'>
                     <GoBell className='selected-icon'/>
                 </Link>
             </div>

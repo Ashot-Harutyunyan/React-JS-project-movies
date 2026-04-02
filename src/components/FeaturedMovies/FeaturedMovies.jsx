@@ -31,7 +31,7 @@ function FeaturedMovies() {
             setLoading(true)
             setError(null)
             try {
-                const data = await getFavoritesArray()
+                const data = await getFavoritesArray(language.url)
                 setFavorites(data)
             } catch (err) {
                 setError(err)
@@ -40,7 +40,7 @@ function FeaturedMovies() {
             }
         }
         loadFavorites()
-    }, [user, refresh])
+    }, [user, refresh, language.url])
 
     return (
         <section className="container-featured-movies scrollUp">
@@ -59,7 +59,7 @@ function FeaturedMovies() {
                         ))
                     ) : favorites.length > 0 ? (
                         favorites.map(({id, overview, poster_path, release_date, title}) => (
-                            <Link to={`FeaturedMovies/${id}`} key={id}>
+                            <Link to={`featuredMovies/${id}`} key={id}>
                                 <div className="modal-single-genre-content">
                                     <div className='modal-single-genre-content-background'>
                                         <div className="modal-single-genre-content-container-img">

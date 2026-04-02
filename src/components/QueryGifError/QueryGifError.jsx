@@ -8,7 +8,7 @@ function QueryGifError({title, message}) {
 
     return (<>
         <div className="container-page-error">
-            <img className="container-page-error-gif" src="../../../public/error.gif" alt="error gif"/>
+            <img className="container-page-error-gif" src="/error.gif" alt="error gif"/>
             <div className="container-page-error-title-message">
                 <h2 className="error-boundary-title">{language[title]}</h2>
                 <p className="error-boundary-message">{message.toLowerCase()}</p>

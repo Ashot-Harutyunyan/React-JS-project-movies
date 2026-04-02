@@ -5,8 +5,8 @@ function Image({url, alt, horizontally}) {
     return (!!url
         ? <LazyLoadImage src={`https://image.tmdb.org/t/p/w500${url}`} alt={alt} effect="blur"/>
         : horizontally
-                ? <LazyLoadImage src='../../../public/horizontally-image-missing.png' alt={alt} effect="blur"/>
-                : <LazyLoadImage src='../../../public/image-missing.png' alt={alt} effect="blur"/>
+                ? <LazyLoadImage src='/horizontally-image-missing.png' alt={alt} effect="blur"/>
+                : <LazyLoadImage src='/image-missing.png' alt={alt} effect="blur"/>
     )
 }
 

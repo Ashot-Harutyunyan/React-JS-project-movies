@@ -40,38 +40,14 @@ const router = createBrowserRouter([
             {
                 errorElement: <ErrorBoundary/>, 
                 children: [
-                    {
-                        index: true, 
-                        element: <Home/>,
-                    }, 
-                    {
-                        path: 'SearchMovies', 
-                        element: <SearchMovies/>,
-                    }, 
-                    {
-                        path: 'SearchMovies/:id', 
-                        element: <SingleProduct/>,
-                    }, 
-                    {
-                        path: 'FeaturedMovies', 
-                        element: <FeaturedMovies/>,
-                    }, 
-                    {
-                        path: 'FeaturedMovies/:id', 
-                        element: <SingleProduct/>,
-                    }, 
-                    {
-                        path: 'product/:id',
-                        element: <SingleProduct/>,
-                    }, 
-                    {
-                        path: ':genre/:id', 
-                        element: <SingleGenre/>,
-                    }, 
-                    {
-                        path: ':genre/:id/:movieId',
-                        element: <SingleProduct/>,
-                    }
+                    { index: true,  element: <Home/> }, 
+                    { path: 'searchMovies',  element: <SearchMovies/> }, 
+                    { path: 'searchMovies/:id',  element: <SingleProduct/> }, 
+                    { path: 'featuredMovies',  element: <FeaturedMovies/> }, 
+                    { path: 'featuredMovies/:id',  element: <SingleProduct/> }, 
+                    { path: 'product/:id', element: <SingleProduct/> }, 
+                    { path: ':genre/:id',  element: <SingleGenre/> }, 
+                    { path: ':genre/:id/:movieId', element: <SingleProduct/> }
                 ]
             }
         ]
