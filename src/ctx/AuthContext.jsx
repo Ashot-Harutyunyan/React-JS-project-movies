@@ -8,6 +8,7 @@ export default function AuthContext({ children }) {
 
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
+    const [authLoading, setAuthLoading] = useState(true)
 
     const getAuthErrorMessage = (errorCode, language) => {
         const isEN = language === 'en-US'
@@ -28,11 +29,12 @@ export default function AuthContext({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser || null)
+            setAuthLoading(false)
         })
         return () => unsubscribe()
     }, [])
 
-    return <AuthCTX value={[user, setUser, error, setError, getAuthErrorMessage]}>{children}</AuthCTX>
+    return (<AuthCTX value={[user, setUser, error, setError, getAuthErrorMessage, authLoading]}>{children}</AuthCTX>)
 }
 
 export const useAuth = () => use(AuthCTX)

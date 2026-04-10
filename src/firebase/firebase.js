@@ -48,11 +48,10 @@ export const logout = async () => {
 
 const LOCALES = ['ru-RU', 'en-US']
 
-export const toggleFavoriteMovieAllLocales = async (movie) => {
-    const user = auth.currentUser
-    if (!user) return false
+export const toggleFavoriteMovieAllLocales = async (movie, uid) => {
+    if (!uid) return false
 
-    const userRef = doc(db, "users", user.uid)
+    const userRef = doc(db, "users", uid)
     const snap = await getDoc(userRef)
 
     const firstField = `favorites_${LOCALES[0]}`
@@ -87,11 +86,10 @@ export const toggleFavoriteMovieAllLocales = async (movie) => {
     return true
 }
 
-export const getFavoritesArray = async (locale) => {
-    const user = auth.currentUser
-    if (!user) return []
+export const getFavoritesArray = async (locale, uid) => {
+    if (!uid) return []
 
-    const snap = await getDoc(doc(db, "users", user.uid))
+    const snap = await getDoc(doc(db, "users", uid))
     if (!snap.exists()) return []
 
     const field = `favorites_${locale}`

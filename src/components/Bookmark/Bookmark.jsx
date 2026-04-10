@@ -8,24 +8,25 @@ import { getFavoritesArray, toggleFavoriteMovieAllLocales } from "../../firebase
 function Bookmark({ variant, movie, onToggle }) {
 
     const [ language ] = useLanguage()
-    const [ user ] = useAuth()
+    const [ user, , , , , authLoading ] = useAuth()
     const { openModal } = useModals()
     const [selected, setSelected] = useState(false)
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        if (authLoading) return
         if (!user) {
             setSelected(false)
             return
         }
 
         const checkFavorite = async () => {
-            const favorites = await getFavoritesArray(language.url)
+            const favorites = await getFavoritesArray(language.url, user.uid)
             setSelected(favorites.some((fav) => fav.id === movie.id))
         }
 
         checkFavorite()
-    }, [user, movie.id])
+    }, [user, movie.id, authLoading])
 
     async function bookmarkClick() {
         if (!user) {
@@ -37,7 +38,7 @@ function Bookmark({ variant, movie, onToggle }) {
 
         setLoading(true)
         try {
-            const wasAdded = await toggleFavoriteMovieAllLocales(movie)
+            const wasAdded = await toggleFavoriteMovieAllLocales(movie, user.uid)
             setSelected(wasAdded)
 
             if (onToggle) {

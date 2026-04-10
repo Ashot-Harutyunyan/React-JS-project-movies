@@ -31,7 +31,7 @@ function FeaturedMovies() {
             setLoading(true)
             setError(null)
             try {
-                const data = await getFavoritesArray(language.url)
+                const data = await getFavoritesArray(language.url, user.uid)
                 setFavorites(data)
             } catch (err) {
                 setError(err)
