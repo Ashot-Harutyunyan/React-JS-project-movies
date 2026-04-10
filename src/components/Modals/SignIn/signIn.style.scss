@@ -1,7 +1,9 @@
 .modal-signIn {
   width: 100%;
   height: 100%;
-  background: #242424;
+  background:
+          linear-gradient(rgb(10 0 20 / 41%), rgb(5 0 15 / 50%)),
+          url('/public/background-sign-in-sign-up.png') center / cover no-repeat;
   position: relative;
   top: 0;
   right: 0;
@@ -16,14 +18,20 @@
 }
 .form-sign-in {
   width: 100%;
-  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 1.5rem;
-  border-radius: 5px;
+  box-shadow:
+          0 0 40px rgba(0, 0, 0, 0.6),
+          0 0 80px rgba(128, 0, 255, 0.2);
   h2 {
     color: #FFFFFF;
   }
@@ -44,11 +52,11 @@
     letter-spacing: 1px;
     font-weight: 700;
     border: 1px solid white;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
   }
   input[type=submit]:active {
-    transform: scale(0.95);
+    transform: scale(0.98);
   }
 }
 .form-sign-in-container-email,

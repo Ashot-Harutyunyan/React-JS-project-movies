@@ -19,7 +19,7 @@ function Nav() {
 
     return (<nav className={burgerMenu ? 'active' : ''}>
         <Link to='/' className='logo'>
-            <img src="/Movies-online-logo.jpeg" alt=""/>
+            <img src="/Movies-online-logo.png" alt=""/>
         </Link>
 
         <div className={burgerMenu ? "burger-menu active" : "burger-menu"}

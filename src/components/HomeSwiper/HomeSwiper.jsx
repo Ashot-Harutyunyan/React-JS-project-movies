@@ -54,7 +54,7 @@ function HomeSwiper({data}) {
             <div className='home-swiper-container-img'>
                 {!loadedStates[index] && <ComponentLoading width={'100%'} height={'100%'} />}
                 <LazyLoadImage
-                    src={`/${item}-${index + 1}.jpg`}
+                    src={`/${item}-${index + 1}.png`}
                     alt={item}
                     effect="blur"
                     threshold={100}

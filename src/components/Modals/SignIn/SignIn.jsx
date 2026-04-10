@@ -39,9 +39,9 @@ function SignIn({closeModal, activeModal}) {
         }
     }
 
-    return (<div style={{display: activeModal ? 'flex' : 'none'}}  className="modal-signIn">
+    return (<div style={{display: activeModal ? 'flex' : 'none'}} className="modal-signIn">
         <div className='modal-close-container'>
-            <IoCloseSharp onClick={()=> {
+            <IoCloseSharp onClick={() => {
                 closeModal()
                 setInputs({email: "", password: ""})
                 setError(null)
@@ -50,7 +50,8 @@ function SignIn({closeModal, activeModal}) {
         <div className='modal-signIn-content'>
             <form onSubmit={handleUserSignIn} className="form-sign-in">
                 <h2>{language.SignIn}</h2>
-                <div className={error ? 'form-sign-in-container-email error-input-border' : 'form-sign-in-container-email'}>
+                <div
+                    className={error ? 'form-sign-in-container-email error-input-border' : 'form-sign-in-container-email'}>
                     <div className='form-sign-in-container-icon'>
                         <MdEmail className='form-sign-in-icon'/>
                     </div>
@@ -62,7 +63,8 @@ function SignIn({closeModal, activeModal}) {
                         onChange={handleChange}
                     />
                 </div>
-                <div className={error ? 'form-sign-in-container-password error-input-border' : 'form-sign-in-container-password'}>
+                <div
+                    className={error ? 'form-sign-in-container-password error-input-border' : 'form-sign-in-container-password'}>
                     <div className='form-sign-in-container-icon'>
                         <HiMiniLockClosed className='form-sign-in-icon'/>
                     </div>
