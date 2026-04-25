@@ -1,12 +1,40 @@
-# React + Vite
+# React JS project movies
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# About the Project
 
-Currently, two official plugins are available:
+React JS Movies App is a modern web app for browsing and searching movies, developed in React.js.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project implements a user-friendly interface with a movie catalog, detail pages, and the ability to add to favorites.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Live:** https://react-js-project-movies.vercel.app
+
+## Features
+
+ - Browse movies by category (Action, Adventure, Animation, etc.)
+ - Search for movies
+ - Add to Favorites
+ - Detailed movie information
+ - View trailer
+ - Dual language support (English / Russian)
+ - Dark theme (Dark UI)
+ - Lazy image loading
+ - Responsive design
+
+## Tech Stack
+
+ - React 19
+ - React Router v7
+ - React Query (@tanstack/react-query)
+ - Firebase (Auth / Storage / DB)
+ - Swiper (слайдеры)
+ - Sass (SCSS)
+ - React Icons
+
+## Highlights
+
+ - Using React Query to Work with APIs
+ - Firebase Authentication (Registration/Login)
+ - Optimization via Lazy Loading
+ - Modern UI (Netflix-Style)   
