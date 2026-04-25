@@ -8,7 +8,7 @@ The project implements a user-friendly interface with a movie catalog, detail pa
 
 ---
 
-**Live:** https://react-js-project-movies.vercel.app
+**Live:**  https://react-js-project-movies.vercel.app
 
 ## Features
 
