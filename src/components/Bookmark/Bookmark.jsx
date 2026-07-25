@@ -1,5 +1,5 @@
 import './bookmark.style.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useOptimistic, useTransition } from 'react'
 import { useAuth } from "../../ctx/AuthContext.jsx"
 import { useModals } from "../../ctx/ModalsContext.jsx"
 import { useLanguage } from "../../ctx/LanguageContext.jsx"
@@ -11,7 +11,8 @@ function Bookmark({ variant, movie, onToggle }) {
     const [ user, , , , , authLoading ] = useAuth()
     const { openModal } = useModals()
     const [selected, setSelected] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [isPending, startTransition] = useTransition()
+    const [optimisticSelected, setOptimisticSelected] = useOptimistic(selected)
 
     useEffect(() => {
         if (authLoading) return
@@ -28,36 +29,34 @@ function Bookmark({ variant, movie, onToggle }) {
         checkFavorite()
     }, [user, movie.id, authLoading])
 
-    async function bookmarkClick() {
+    function bookmarkClick() {
         if (!user) {
             openModal('authRequiredModal')
             return
         }
 
-        if (loading) return
+        startTransition(async () => {
+            setOptimisticSelected(!optimisticSelected)
+            try {
+                const wasAdded = await toggleFavoriteMovieAllLocales(movie, user.uid)
+                setSelected(wasAdded)
 
-        setLoading(true)
-        try {
-            const wasAdded = await toggleFavoriteMovieAllLocales(movie, user.uid)
-            setSelected(wasAdded)
-
-            if (onToggle) {
-                setTimeout(() => onToggle(), 300)
+                if (onToggle) {
+                    setTimeout(() => onToggle(), 300)
+                }
+            } catch (err) {
+                console.error("Bookmark error:", err)
             }
-        } catch (err) {
-            console.error("Bookmark error:", err)
-        } finally {
-            setLoading(false)
-        }
+        })
     }
 
-    const handleClick = async (e) => {
+    const handleClick = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        await bookmarkClick()
+        bookmarkClick()
     }
 
-    const bookmarkClass = `bookmark${selected ? ' active' : ''}${loading ? ' loading' : ''}`
+    const bookmarkClass = `bookmark${optimisticSelected ? ' active' : ''}${isPending ? ' loading' : ''}`
 
     const svgIcon = (
         <svg viewBox="0 0 32 32">
@@ -68,21 +67,15 @@ function Bookmark({ variant, movie, onToggle }) {
     )
 
     if (variant === 'button') {
-        return (
-            <button onClick={handleClick} disabled={loading}>
-                {selected ? language.selected : language.choose}
+        return <button onClick={handleClick} disabled={isPending}>
+                {optimisticSelected ? language.selected : language.choose}
                 <div className={bookmarkClass}>
                     {svgIcon}
                 </div>
-            </button>
-        )
+        </button>
     }
 
-    return (
-        <div className={bookmarkClass} onClick={handleClick}>
-            {svgIcon}
-        </div>
-    )
+    return <div className={bookmarkClass} onClick={handleClick}>{svgIcon}</div>
 }
 
 export default Bookmark
