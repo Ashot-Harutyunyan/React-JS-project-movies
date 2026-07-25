@@ -42,8 +42,7 @@ function FeaturedMovies() {
         loadFavorites()
     }, [user, refresh, language.url])
 
-    return (
-        <section className="container-featured-movies scrollUp">
+    return <section className="container-featured-movies scrollUp">
             <h2 className="container-featured-movies-title">
                 {loading ? <ComponentLoading width={'300px'} height={'35px'} /> : language.featuredMoviesTitle}
             </h2>
@@ -103,8 +102,7 @@ function FeaturedMovies() {
                     )
                 }
             </section>
-        </section>
-    )
+    </section>
 }
 
 export default FeaturedMovies
